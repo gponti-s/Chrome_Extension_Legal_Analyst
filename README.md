@@ -15,12 +15,12 @@ There are several HTML tags related to tables. Here we have the fundamentals, fo
 Other elements are:
 
 - `<th>` Defines a header cell in a table;
-- ``<caption>` - defines a table caption;
-- ``<colgroup>` - specifies a group of one or more columns in a table for formatting;
-- ``<col>` - specifies column properties for each column within a `<colgroup>` element;
-- ``<thead>` - groups the header content in a table;
-- ``<tbody>` - is used in conjunction with the `<thead>` and `<tfoot>` elements to specify each part of a table (body, header, footer). Browsers can use these elements to enable scrolling of the table body independently of the header and footer. Also, when printing a large table that spans multiple pages, these elements can enable the table header and footer to be printed at the top and bottom of each page;  
-- ``<tfoot>` - groups the footer content in a table.  
+- `<caption>` - defines a table caption;
+- `<colgroup>` - specifies a group of one or more columns in a table for formatting;
+- `<col>` - specifies column properties for each column within a `<colgroup>` element;
+- `<thead>` - groups the header content in a table;
+- `<tbody>` - is used in conjunction with the `<thead>` and `<tfoot>` elements to specify each part of a table (body, header, footer). Browsers can use these elements to enable scrolling of the table body independently of the header and footer. Also, when printing a large table that spans multiple pages, these elements can enable the table header and footer to be printed at the top and bottom of each page;  
+- `<tfoot>` - groups the footer content in a table.  
 [font](https://www.w3schools.com/html/html_tables.asp)
 
 ## JavaScript - Scripts
