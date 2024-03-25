@@ -71,9 +71,23 @@ const myElements = {
     boldTitle: true,
     flag: false,
   },
+  bacenjud: {
+    name: "JUNTADA DE PENHORA REALIZADA BACENJUD/SISBAJUD",
+    color: "yellow",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
   sisbajud: {
     name: "JUNTADA DE PENHORA REALIZADA sisbajud/SISBAJUD",
     color: "yellow",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
+  MandadoDevolvido: {
+    name: "MANDADO DEVOLVIDO",
+    color: "",
     textSize: "",
     boldTitle: true,
     flag: false,
@@ -184,7 +198,7 @@ async function alertMessage() {
   if (!myElements.termoDePenhora.flag) {
     emojiTermoDePenhora = emoji.crossMark;
   }
-  if (!myElements.sisbajud.flag) {
+  if (!myElements.sisbajud.flag && !myElements.bacenjud.flag) {
     emojiSisbaJud = emoji.crossMark;
   }
   var standardText =
