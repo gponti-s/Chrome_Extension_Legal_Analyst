@@ -16,6 +16,8 @@ const messages = {
   citacaoError: `\n${emoji.alertMark} Procurar por:\n${emoji.arrow} Citação por Mandado mais Antigo\n${emoji.arrow} Decisão que Estende a Citação dos autos Principais\n${emoji.arrow} Parte Digitalizada dos autos\n${emoji.arrow} Citação por Carta Precatória`,
   citacao: `  Citação (carta, mandado, edital ou certidão)\n`,
   sisbajud: `  SisbaJud Frutífero\n`,
+  serasajud: `  SerasaJud\n`,
+  cnib: `  CNIB\n`,
   termoDePenhora: `  Termo de Penhora\n`,
   sentenca: `  Sentenciado ou Com Baixa Definitiva\n`,
   acordao: `\n${emoji.alertMark}  Atenção - Acórdão nos autos\n`,
@@ -81,6 +83,20 @@ const myElements = {
   sisbajud: {
     name: "JUNTADA DE PENHORA REALIZADA sisbajud/SISBAJUD",
     color: "yellow",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
+  serasajud: {
+    name: "EXPEDIÇÃO DE OFÍCIO SERASAJUD (INCLUSÃO)",
+    color: "#FFEA00",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
+  cnib: {
+    name: "EXPEDIÇÃO DE BUSCA CNIB",
+    color: "#FFFF8F",
     textSize: "",
     boldTitle: true,
     flag: false,
@@ -179,9 +195,10 @@ async function alertMessage() {
   var emojiCitacao = emoji.checkMark;
   var emojiTermoDePenhora = emoji.checkMark;
   var emojiSisbaJud = emoji.checkMark;
+  var emojiSerasaJud = emoji.checkMark;
+  var emojiCnib = emoji.checkMark;
   var emojiSentenca = emoji.checkMark;
   var citacaoTip = false;
-  var acordaoTip = false;
 
   if (
     !myElements.citacaoPositiva.flag &&
@@ -201,11 +218,21 @@ async function alertMessage() {
   if (!myElements.sisbajud.flag && !myElements.bacenjud.flag) {
     emojiSisbaJud = emoji.crossMark;
   }
+  if (!myElements.serasajud.flag) {
+    emojiSerasaJud = emoji.crossMark;
+  }
+  if (!myElements.cnib.flag) {
+    emojiCnib = emoji.crossMark;
+  }
   var standardText =
     emojiCitacao +
     messages.citacao +
     emojiSisbaJud +
     messages.sisbajud +
+    emojiSerasaJud +
+    messages.serasajud +
+    emojiCnib +
+    messages.cnib +
     emojiTermoDePenhora +
     messages.termoDePenhora +
     emojiSentenca +
