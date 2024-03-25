@@ -64,6 +64,13 @@ const myElements = {
     boldTitle: false,
     flag: false,
   },
+  citacaoCartaPrecatoria1: {
+    name: "JUNTADA DE DEVOLUÇÃO DE CARTA PRECATÓRIA",
+    color: "#d0fdd0",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
   sisbajud: {
     name: "JUNTADA DE PENHORA REALIZADA sisbajud/SISBAJUD",
     color: "yellow",
@@ -74,6 +81,13 @@ const myElements = {
   termoDePenhora: {
     name: "TERMO DE PENHORA",
     color: "#DBCEE1",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
+  agenteDelegado: {
+    name: "Agente Delegado",
+    color: "",
     textSize: "",
     boldTitle: true,
     flag: false,
@@ -184,10 +198,9 @@ async function alertMessage() {
     messages.sentenca;
   if (citacaoTip) {
     alert(standardText + messages.citacaoError);
-  } else if (myElements.acordao.flag){
+  } else if (myElements.acordao.flag) {
     alert(standardText + messages.acordao);
-  }
-  else {
+  } else {
     alert(standardText);
   }
 }
@@ -262,7 +275,7 @@ async function main() {
     });
   });
   setTimeout(function () {
-      checkFlags();
+    checkFlags();
   }, 2000);
 }
 
