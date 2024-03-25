@@ -7,11 +7,12 @@
             table, th, td {
               border: 1px solid black;
               text-align: center;
+              height: 5vh;
             }
             </style>
     </head>
     <body>
-        <h1 clas="FirstTitle">Here is a simple Table</h1>
+        <h1 clas="FirstTitle">Simple Table</h1>
         <p class="FirstParagraph">
             Pay attention to the different elements in the table and how you can find each cell using your browser's inspect (right-click) function. 
             <br/>
@@ -26,17 +27,17 @@
                 </tr>
             </thead>
             <tbody >
-                <tr class="FirstRow" style="background-color: lightblue;">
+                <tr class="FirstRow">
                     <td>Firts Row - First Cell</td>
                     <td>Firts Row - Second Cell</td>
                     <td>Firts Row - Thrid Cell</td>
                 </tr>
-                <tr clss="SecondRow" style="background-color: lightgreen;">
+                <tr class="SecondRow">
                     <td>Second Row - Fisrt Cell</td>
                     <td>Second Row - Second Cell</td>
                     <td>Second Row - Third Cell</td>
                 </tr>
-                <tr Class="ThirdRow" style="background-color: lightyellow;">
+                <tr class="ThirdRow">
                     <td>
                         <b>Third Row - Fisrt Cell (bold)</b>
                     </td>
@@ -45,11 +46,17 @@
                     </td>
                     <td>
                         <b>
-                            <a href="TableColgroup.html">Third Row - Third Cell (bold + link)</a>
+                            <a href="TableColgroup.html">Third Row - Th ird Cell (bold + link)</a>
                         </b>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <button onclick="refreshPage()">Reset Table</button>
+        <button onclick="rowColorChange()">Change Row Colors</button>
+        <button onclick="cellTextChange()">Change Cells Text</button>
+        <button onclick="boldTextChange()">Find Bolds Elements</button>
+        <button onclick="linkTextChange()">Find Liks Elements</button>
+        <script src="LearningTables.js"></script>
     </body>
 </html>

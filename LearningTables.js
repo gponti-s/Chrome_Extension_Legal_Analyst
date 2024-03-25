@@ -1,32 +1,59 @@
-var myElements = {
-    sentenca: {name: "EXTINTA A EXECUÇÃO OU O CUMPRIMENTO DA SENTENÇA", color: "lightblue", textSize: ''},
-    termoDePenhora: {name: "Termo de Penhora", color: "lightred", textSize: ''}
+var myColors = {
+  0: 'lightgray',
+  1: 'lightblue',
+  2: 'lightgreen',
+  3: 'lightyellow',
+};
 
+function refreshPage() {
+    location.reload();
 }
 
-function changeBackgroundColor (color) {
-    Array.from(document.getElementsByClassName('masterBlockSubInfoHorz')).forEach(function(element) {
-        element.style.backgroundColor = color;
-    });    
+function getRows(){
+    return Array.from(document.getElementsByTagName('tr'));
 };
 
-function highlightRow (row, _background){
-    row.style.background = _background; // highlight only the row
-    row.style.borderColor = "thick solid #0000FF";
+function getCells(){
+    return Array.from(document.getElementsByTagName('td'));
 };
 
+function highlightRow(row, _background) {
+  row.style.background = _background; // highlight only the row
+  row.style.borderColor = "thick solid #0000FF";
+}
 
-Array.from(document.getElementsByTagName('tr')).forEach(function(row) {
+function rowColorChange(){
     var i = 0;
-    Array.from(row.querySelectorAll('td')).forEach(function(cel){
+    var rows = getRows()
+    rows.forEach(row => highlightRow(row, myColors[i++]));
+};
+
+
+function cellTextChange() {
+    var cells = getCells();
+    var i = 0;
+    cells.forEach(function (cel) {
+        cel.innerText = i;
         i++;
-        //console.log("Cel",i, cel.innerText.split()); // Cells
-        //console.log(cel.querySelector('b')); // Bold
-        //console.log(cel.querySelector('a')); // links
-        if (cel.innerText.includes(myElements.sentenca.name)){
-            highlightRow(row, myElements.sentenca.color);
-            changeBackgroundColor('blue');
-            //alert('sentenca');       
-        };
     });
-});
+}
+
+function boldTextChange() {
+    var cells = getCells();
+    cells.forEach(cell => {
+        var boldElements = cell.getElementsByTagName('b');
+        Array.from(boldElements).forEach(boldElement => {
+            boldElement.style.background = 'red';
+        });
+    });
+}
+
+function linkTextChange() {
+    var cells = getCells();
+    cells.forEach(cell => {
+        var boldElements = cell.getElementsByTagName('a');
+        Array.from(boldElements).forEach(boldElement => {
+            boldElement.style.background = 'pink';
+        });
+    });
+}
