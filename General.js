@@ -74,10 +74,31 @@ const myElements = {
     flag: false,
   },
   bacenjud: {
-    name: "JUNTADA DE PENHORA REALIZADA BACENJUD/SISBAJUD",
+    name: "JUNTADA DE PENHORA REALIZADA BACENJUD",
     color: "yellow",
     textSize: "",
     boldTitle: true,
+    flag: false,
+  },
+  bacenjudTranferencia: {
+    name: "EXPEDIÇÃO DE TRANSFERÊNCIA BACENJUD",
+    color: "yellow",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },
+  bacenjudFrutifero: {
+    name: "Resultado: Frutífero.",
+    color: "yellow",
+    textSize: "",
+    boldTitle: false,
+    flag: false,
+  },
+  bacenjudParcialFrutifero: {
+    name: "Resultado: Parcialmente Frutífero.",
+    color: "yellow",
+    textSize: "",
+    boldTitle: false,
     flag: false,
   },
   sisbajud: {
@@ -215,7 +236,13 @@ async function alertMessage() {
   if (!myElements.termoDePenhora.flag) {
     emojiTermoDePenhora = emoji.crossMark;
   }
-  if (!myElements.sisbajud.flag && !myElements.bacenjud.flag) {
+  if (
+    !myElements.sisbajud.flag &&
+    !myElements.bacenjud.flag &&
+    !myElements.bacenjudTranferencia.flag &&
+    !myElements.bacenjudParcialFrutifero.flag &&
+    !myElements.bacenjudFrutifero.flag 
+  ) {
     emojiSisbaJud = emoji.crossMark;
   }
   if (!myElements.serasajud.flag) {
