@@ -273,7 +273,7 @@ async function alertMessage() {
   }
 }
 
-// TODO - Understand why junda de analise de prazo is turning green - 0060560-44.2020.8.16.0014
+// TODO - Understand why jutanda de analise de prazo is turning green - 0060560-44.2020.8.16.0014
 async function checkCitacaoMandado(row, _color) {
   Array.from(document.querySelectorAll("a")).forEach(function (link) {
     if (link.innerText.includes("Ato ordinatorio 2.7")) {
