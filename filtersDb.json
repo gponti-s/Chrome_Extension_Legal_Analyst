@@ -1,0 +1,58 @@
+{
+    "citacao": {
+        "label": "Citação",
+        "description": ""
+    },
+    "penhoraDeValores": {
+        "label": "Penhora de Valores",
+        "description": ""
+      },
+      "serasajud": {
+        "label": "Serasajud",
+        "description": ""
+      },
+      "cnib": {
+        "label": "CNIB",
+       "description": ""
+      },
+      "penhroaDeImovel": {
+        "label": "Penhora de Imóveis",
+        "types": {
+          "termoDePenhora": {
+            "searchFor": ["TERMO DE PENHORA"],
+            "color": "#DBCEE1",
+            "flag": false
+          },
+          "registroDaPenhora": {
+            "searchFor": ["Agente Delegado"],
+            "color": "#DBCEE1",
+            "flag": false
+          }
+        }
+      },
+      "decisaoTerminativa": {
+        "label": "Sentença/Acórdão/Trânsito",
+        "types": {
+          "sentenca": {
+            "searchFor": ["Registro em"],
+            "color": "#lightblue",
+            "flag": false
+          },
+          "acordao": {
+            "searchFor": ["JUNTADA DE ACÓRDÃO"],
+            "color": "#lightblue",
+            "flag": false
+          },
+          "transitoEmJulgado": {
+            "searchFor": ["TRANSITADO EM JULGADO EM"],
+            "color": "#lightblue",
+            "flag": false
+          },
+          "baixaDefinitiva":{
+            "searchFor": ["JUNTADA DE ANOTAÇÃO DE BAIXA DEFINITIVA"],
+            "color": "#lightblue",
+            "flag": false
+          }
+        }
+    }
+}

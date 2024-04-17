@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Projudi - Filtros Personalizados",
+  "version": "1.0",
+  "description": "Automatically executes a script on specific web pages, to inject personalized filters.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://projudi2.tjpr.jus.br/*"],
+      "js": ["filters.js"],
+      "all_frames": true
+    }
+  ],
+  "commands": {
+    "executeGeneralScript": {
+      "suggested_key": {
+        "default": "Ctrl+J"
+      },
+      "description": "Execute General.js"
+    }
+  },
+  "icons": {
+    "16": "charge.png",
+    "48": "charge.png",
+    "128": "images.jpeg"
+  }
+}
