@@ -6,24 +6,19 @@
   "permissions": [
     "activeTab"
   ],
+  "action": {
+    "default_popup": "index.html"
+  },
   "content_scripts": [
     {
-      "matches": ["*://projudi2.tjpr.jus.br/*"],
-      "js": ["filters.js"],
-      "all_frames": true
+        "matches": ["*://projudi2.tjpr.jus.br/*"],
+        "js": ["filters.js"],
+        "all_frames": true
     }
-  ],
-  "commands": {
-    "executeGeneralScript": {
-      "suggested_key": {
-        "default": "Ctrl+J"
-      },
-      "description": "Execute General.js"
-    }
-  },
+],
   "icons": {
     "16": "charge.png",
     "48": "charge.png",
-    "128": "images.jpeg"
+    "128": "charge.png"
   }
 }

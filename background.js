@@ -1,8 +1,3 @@
-chrome.commands.onCommand.addListener(function(command) {
-    if (command === "executeGeneralScript") {
-      chrome.tabs.executeScript({
-        file: "General.js"
-      });
-    }
-  });
-  
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log(request.message); // Log the received message to the console
+});

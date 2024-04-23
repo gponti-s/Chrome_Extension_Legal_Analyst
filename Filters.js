@@ -1,12 +1,13 @@
-// import emoji from './emojiDb.json';
 
 const emoji = {
   crossMark: "\u274c",
   checkMark: "\u2713",
   alertMark: "\u26d4",
   arrow: "\u27a1",
+  lightning: "\u26A1"
 };
 
+// TODO: include renajud
 const myFilters = {
   citacao: {
     label: "Citação",
@@ -52,7 +53,7 @@ const myFilters = {
       },
       termoDePenhoraValores: {
         searchFor: [],
-        searchForBold: ["OFÍCIO DE PENHORA NO ROSTO DOS AUTOS"],
+        searchForBold: ["EXPEDIÇÃO DE OFÍCIO PENHORA NO ROSTO DOS AUTOS"],
         color: "yellow",
         flag: false,
       },
@@ -86,12 +87,12 @@ const myFilters = {
       termoDePenhora: {
         searchFor: [],
         searchForBold: ["TERMO DE PENHORA"],
-        color: "#DBCEE1",
+        color: "#BB8FCE",
         flag: false,
       },
       registroDaPenhora: {
-        searchFor: ["Agente Delegado"],
-        searchForBold: [],
+        searchFor: ["LEITURA DE TERMO DE PENHORA REALIZADA"],
+        searchForBold: ["Agente Delegado"],
         color: "",
         flag: false,
       },
@@ -99,11 +100,22 @@ const myFilters = {
   },
   mandado: {
     label: "Mandados",
-    types: {
+    types: {  
       devolvido: {
         searchFor: [],
         searchForBold: ["MANDADO DEVOLVIDO"],
         color: "#DDF6DF",
+        flag: false,
+      },
+    },
+  },
+  avaliador: {
+    label: "Avaliador",
+    types: {  
+      devolvido: {
+        searchFor: [],
+        searchForBold: ["JUNTADA DE LAUDO"],
+        color: "#E8DAEF",
         flag: false,
       },
     },
@@ -314,7 +326,8 @@ function addEvent(checkbox) {
 }
 async function filtersTitle() {
   const filtersTitle = document.createElement("b");
-  filtersTitle.innerText = "Filtros Personalizados: ";
+  filtersTitle.innerText = `${emoji.lightning}Filtros Personalizados:`;
+  filtersTitle.title = `${emoji.alertMark}Atenção${emoji.alertMark}\nEstes filtros não fazem parte originalmente do Projudi, foram inseridos pela Extensão do Chrome chamada Proudji - Filtros Personalizados.`;
   document.getElementById("aac1").appendChild(filtersTitle);
   document.getElementById("aac1").appendChild(document.createElement("span"));
   return;
@@ -329,4 +342,9 @@ async function main() {
   checkAll(newCheckbox("checkAll", "TODOS"));
 }
 
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log(request.message); // Log the received message to the console
+});
 main();
+
