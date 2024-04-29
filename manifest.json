@@ -4,15 +4,21 @@
   "version": "1.0",
   "description": "Automatically executes a script on specific web pages, to inject personalized filters.",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "notifications", 
+    "runtime"
   ],
+  
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "popup.html"
   },
+  "background": {
+    "service_worker": "background.js"
+  },  
   "content_scripts": [
     {
         "matches": ["*://projudi2.tjpr.jus.br/*"],
-        "js": ["filters.js"],
+        "js": ["content.js"],
         "all_frames": true
     }
 ],

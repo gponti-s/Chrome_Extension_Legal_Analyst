@@ -4,7 +4,10 @@ const emoji = {
   checkMark: "\u2713",
   alertMark: "\u26d4",
   arrow: "\u27a1",
-  lightning: "\u26A1"
+  lightning: "\u26A1",
+  ice: "🥶",
+  hammer: "🧐"
+  
 };
 
 // TODO: include renajud
@@ -31,6 +34,12 @@ const myFilters = {
         searchFor: ["Ato ordinatorio 2.7"],
         searchForBold: ["JUNTADA DE ANÁLISE DE DECURSO DE PRAZO"],
         color: "lightgreen",
+        flag: false,
+      },
+      peticaoInicial: {
+        searchFor: [],
+        searchForBold: ["JUNTADA DE PETIÇÃO DE INICIAL"],
+        color: "",
         flag: false,
       },
     },
@@ -87,7 +96,7 @@ const myFilters = {
       termoDePenhora: {
         searchFor: [],
         searchForBold: ["TERMO DE PENHORA"],
-        color: "#BB8FCE",
+        color: "#D0BBD9",
         flag: false,
       },
       registroDaPenhora: {
@@ -333,6 +342,24 @@ async function filtersTitle() {
   return;
 }
 
+
+async function checkPendencias(){
+  pendencia = document.getElementById('quadroPendencias');
+    if(pendencia.innerText.toLocaleLowerCase().includes("suspensão")){
+      pendencia.style.color = "red";
+      pendencia.style.fontWeight = "bold";
+      //alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.ice} Processo Suspenso`);
+    } else if(pendencia.innerText.toLocaleLowerCase().includes("hasta") || 
+    pendencia.innerText.toLocaleLowerCase().includes("leilão")){
+      pendencia.style.color = "red";
+      pendencia.style.fontWeight = "bold";
+      
+//       alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.hammer} Leilão Designado \n\nConfira as datas em:
+// https://docs.google.com/spreadsheets/d/1L8QdCiRvhWyDBfe2xtcVJFcK_zA1NLc14_wjUvWlwjc/edit?usp=sharing`);
+    }
+}
+
+
 async function main() {
   _ = await filtersTitle();
   Object.entries(myFilters).forEach(function ([key, value]) {
@@ -340,11 +367,12 @@ async function main() {
     addEvent(checkbox);
   });
   checkAll(newCheckbox("checkAll", "TODOS"));
+  _ = await checkPendencias();
 }
 
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  console.log(request.message); // Log the received message to the console
-});
+// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+//   console.log(request.message); // Log the received message to the console
+// });
 main();
 
