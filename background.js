@@ -1,40 +1,92 @@
-const loaded = false;
+console.log("From background");
 
+let state = {
+  currentLinkIndex: 0,
+  linksDb: [],
+};
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-    if (request.greeting === "hello")
-      sendResponse({farewell: "goodbye"});
+// Load the state from chrome.storage when the extension starts
+chrome.storage.local.get("state", function(data) {
+  if (data.state) {
+    state = data.state;
   }
-);
+});
 
-async function pageLoad() {
-  const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-  const response = await chrome.tabs.sendMessage(tab.id, {action: "load"} );
-  console.log("response: ",response);
-  return response;
+
+
+//TODO: delete this function
+window.addEventListener("load", async (event) => {
+  console.log("Popup listening...");
+  event.preventDefault();
+});
+
+// Listen for messages from content.js
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.action === "contentMessage") {
+      console.log("Message from content.js:", request.Text);
+      // Send a response back to content.js
+      sendResponse({ Text: "Message received in background.js" });
+  }
+});
+
+
+async function mainPageLoad(){
+  chrome.tabs.query({ active: true, currentWindow: true }, async function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      action: "load",
+      Text: "Extension listening...",
+    }, function(response) {
+      console.log("Response from content script:", response.Boolean);
+      return response.Boolean;
+    }); 
+  });
 }
 
-async function sendMessageToContentScript(_action, _content) {
+
+async function sendMessageToContentScript(_action, _content = null) {
   chrome.tabs.query({ active: true, currentWindow: true }, async function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
       action: _action,
       Text: _content,
+    }, function (response){
+      return response
     });  
   });
 }
 
 //Automation
+// document.getElementById("automationButton").addEventListener("click", async function () {
+//   const linksDb = ["de juntada", "0010571-02.2002.8.16.0014"];
+//   const maxTimeout = 10000;
+
+//   for (let i = 0; i < linksDb.length; i++) {
+//     const startTime = Date.now();
+    
+//     await sendMessageToContentScript("automation", linksDb[i]);
+    
+//     await new Promise(resolve => setTimeout(resolve, 1000));
+//     let loaded = await mainPageLoad();
+//     console.log("mainloaded: ", loaded);
+//     console.log("loaded: ", sendMessageToContentScript("load"));
+//     while (!loaded) {
+//       if (Date.now() - startTime >= maxTimeout) {
+//         throw new Error("Timeout reached while waiting for page load.");
+//       }
+//       await new Promise(resolve => setTimeout(resolve, 2000));
+//     }
+//   }
+// });
 document.getElementById("automationButton").addEventListener("click", async function () {
-  const linksDb = ["de juntada", "0071039-62.2021.8.16.0014"];
-  for (let i = 0; i < linksDb.length; i++) {
+  const linksDb = ["de juntada", "0010571-02.2002.8.16.0014"];
+  state.linksDb = linksDb;
+  const currentLinkIndex = state.currentLinkIndex;
+
+  for (let i = currentLinkIndex; i < linksDb.length; i++) {
       await sendMessageToContentScript("automation", linksDb[i]);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      //_ = await pageLoad();
-      //await new Promise(resolve => setTimeout(resolve, 5000));
+      if (mainPageLoad() != true){
+        console.log("awaiting for page load");
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
   }
 });
 

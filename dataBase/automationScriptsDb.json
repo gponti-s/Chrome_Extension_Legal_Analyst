@@ -1,0 +1,64 @@
+{
+    "openAllShowDetails":[
+        {
+            "command": "click",
+            "selectorType": "partialId",
+            "identifier": "movimentacoes",
+            "innerText": null,
+            "input": null,
+            "timeOut": null
+        }
+    ],
+    "mandadoOrdenacao":[
+        {
+            "command": "click",
+            "selectorType": "tag",
+            "identifier": "a",
+            "innerText": "de juntada",
+            "input": null,
+            "timeOut": null
+        },
+        {
+            "command": "click",
+            "selectorType": "onclick",
+            "identifier": "checkAllEnable",
+            "innerText": null,
+            "input": null,
+            "timeOut": null
+        },
+        {
+            "command": "click",
+            "selectorType": "onclick",
+            "identifier": "analisar()",
+            "innerText": null,
+            "input": null,
+            "timeOut": null
+        }
+    ],
+    "secondPart":[
+        {
+            "command": "click",
+            "selectorType": "tag",
+            "identifier": "a",
+            "innerText": "Ordenar Cumprimentos",
+            "input": null,
+            "timeOut": null
+        },
+        {
+            "command": "select",
+            "selectorType": "id",
+            "identifier": "codTipoCumprimentoCartorio",
+            "innerText": "Mandado",
+            "input": null,
+            "timeOut": null
+        },
+        {
+            "command": "input",
+            "selectorType": "id",
+            "identifier": "prazoCumprimento",
+            "innerText": null,
+            "input": "30",
+            "timeOut": null
+        }
+    ]
+}
