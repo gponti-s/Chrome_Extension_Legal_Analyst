@@ -110,7 +110,7 @@ const myElements = {
   },
   serasajud: {
     name: "EXPEDIÇÃO DE OFÍCIO SERASAJUD (INCLUSÃO)",
-    color: "#FFEA00",
+    color: "#FFFF8F",
     textSize: "",
     boldTitle: true,
     flag: false,
@@ -167,6 +167,13 @@ const myElements = {
   baixaDefinitiva: {
     name: "JUNTADA DE ANOTAÇÃO DE BAIXA DEFINITIVA",
     color: "lightblue",
+    textSize: "",
+    boldTitle: true,
+    flag: false,
+  },  
+  suspensao: {
+    name: "PROCESSO SUSPENSO",
+    color: "#BDBDBD",
     textSize: "",
     boldTitle: true,
     flag: false,

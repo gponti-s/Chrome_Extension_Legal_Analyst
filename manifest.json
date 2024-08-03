@@ -9,6 +9,7 @@
     "sidePanel", 
     "storage"
   ],
+  "options_page": "options.html",
   "action": {
     "default_popup": "popup.html"
   },
@@ -19,7 +20,7 @@
   "content_scripts": [
     {
         "matches": ["*://projudi2.tjpr.jus.br/*"],
-        "js": ["content.js"],
+        "js": ["content.js", "filters.js"],
         "all_frames": true,
         "type": "module"
     }

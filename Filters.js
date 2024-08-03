@@ -1,4 +1,3 @@
-
 const emoji = {
   crossMark: "\u274c",
   checkMark: "\u2713",
@@ -6,8 +5,7 @@ const emoji = {
   arrow: "\u27a1",
   lightning: "\u26A1",
   ice: "🥶",
-  hammer: "🧐"
-  
+  hammer: "🧐",
 };
 
 // TODO: include renajud
@@ -23,24 +21,28 @@ const myFilters = {
         ],
         color: "lightgreen",
         flag: false,
+        clickOn: true,
       },
       negativa: {
         searchFor: ["Devolução sem Leitura - Referente a CITAÇÃO"],
         searchForBold: [],
         color: "red",
         flag: false,
+        clickOn: true,
       },
       citacaoMandado: {
         searchFor: ["Ato ordinatorio 2.7"],
         searchForBold: ["JUNTADA DE ANÁLISE DE DECURSO DE PRAZO"],
         color: "lightgreen",
         flag: false,
+        clickOn: true,
       },
       peticaoInicial: {
         searchFor: [],
         searchForBold: ["JUNTADA DE PETIÇÃO DE INICIAL"],
         color: "",
         flag: false,
+        clickOn: true,
       },
     },
   },
@@ -59,12 +61,29 @@ const myFilters = {
         ],
         color: "yellow",
         flag: false,
+        clickOn: true,
+      },
+      desbloqueioSisbajud: {
+        searchFor: [],
+        searchForBold: [
+          "EXPEDIÇÃO DE DESBLOQUEIO SISBAJUD",
+          "JUNTADA DE PENHORA SOLICITADA BACENJUD",
+          "EXPEDIÇÃO DE BACENJUD BLOQUEIO - AUTOMATIZADO",
+          "EXPEDIÇÃO DE DESBLOQUEIO BACENJUD",
+          "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD/SISBAJUD",
+          "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD",
+          "EXPEDIÇÃO DE BLOQUEIO BACENJUD",
+        ],
+        color: "#fefed2",
+        flag: false,
+        clickOn: true,
       },
       termoDePenhoraValores: {
         searchFor: [],
         searchForBold: ["EXPEDIÇÃO DE OFÍCIO PENHORA NO ROSTO DOS AUTOS"],
         color: "yellow",
         flag: false,
+        clickOn: true,
       },
     },
   },
@@ -73,9 +92,27 @@ const myFilters = {
     types: {
       inclusao: {
         searchFor: [],
-        searchForBold: ["EXPEDIÇÃO DE OFÍCIO SERASAJUD (INCLUSÃO)"],
-        color: "#FFEA00",
+        searchForBold: [
+          "EXPEDIÇÃO DE OFÍCIO SERASAJUD (INCLUSÃO)",
+          "EXPEDIÇÃO DE OFÍCIO SERAJUD (INCLUSÃO)",
+        ],
+        color: "#ff00b3",
         flag: false,
+        clickOn: true,
+      },
+      oficioOutrosOrgaos: {
+        searchFor: [],
+        searchForBold: ["JUNTADA DE OFÍCIO DE OUTROS ÓRGÃOS"],
+        color: "",
+        flag: false,
+        clickOn: true,
+      },
+      exclusao: {
+        searchFor: [],
+        searchForBold: ["OFÍCIO SERASAJUD (EXCLUSÃO)"],
+        color: "#f78dd8",
+        flag: false,
+        clickOn: false,
       },
     },
   },
@@ -87,6 +124,33 @@ const myFilters = {
         searchForBold: ["EXPEDIÇÃO DE BUSCA CNIB"],
         color: "#FFFF8F",
         flag: false,
+        clickOn: true,
+      },
+    },
+  },
+  renajud: {
+    label: "RENAJUD",
+    types: {
+      bloqueio: {
+        searchFor: [],
+        searchForBold: ["EXPEDIÇÃO DE BLOQUEIO RENAJUD"],
+        color: "#a17a74",
+        flag: false,
+        clickOn: true,
+      },
+      busca: {
+        searchFor: [],
+        searchForBold: ["EXPEDIÇÃO DE BUSCA RENAJUD"],
+        color: "#dbc4c1",
+        flag: false,
+        clickOn: true,
+      },
+      buscaEndereco: {
+        searchFor: [],
+        searchForBold: ["JUNTADA DE CONSULTA REALIZADA NO RENAJUD"],
+        color: "",
+        flag: false,
+        clickOn: true,
       },
     },
   },
@@ -98,34 +162,38 @@ const myFilters = {
         searchForBold: ["TERMO DE PENHORA"],
         color: "#D0BBD9",
         flag: false,
+        clickOn: true,
       },
       registroDaPenhora: {
         searchFor: ["LEITURA DE TERMO DE PENHORA REALIZADA"],
         searchForBold: ["Agente Delegado"],
         color: "",
         flag: false,
+        clickOn: true,
       },
     },
   },
   mandado: {
     label: "Mandados",
-    types: {  
+    types: {
       devolvido: {
         searchFor: [],
         searchForBold: ["MANDADO DEVOLVIDO"],
         color: "#DDF6DF",
         flag: false,
+        clickOn: true,
       },
     },
   },
   avaliador: {
     label: "Avaliador",
-    types: {  
+    types: {
       devolvido: {
         searchFor: [],
         searchForBold: ["JUNTADA DE LAUDO"],
         color: "#E8DAEF",
         flag: false,
+        clickOn: true,
       },
     },
   },
@@ -137,24 +205,28 @@ const myFilters = {
         searchForBold: [],
         color: "lightblue",
         flag: false,
+        clickOn: true,
       },
       acordao: {
         searchFor: [],
         searchForBold: ["JUNTADA DE ACÓRDÃO"],
         color: "lightblue",
         flag: false,
+        clickOn: true,
       },
       transitoEmJulgado: {
         searchFor: [],
         searchForBold: ["TRANSITADO EM JULGADO EM"],
         color: "lightblue",
         flag: false,
+        clickOn: true,
       },
       baixaDefinitiva: {
         searchFor: [],
         searchForBold: ["JUNTADA DE ANOTAÇÃO DE BAIXA DEFINITIVA"],
         color: "lightblue",
         flag: false,
+        clickOn: true,
       },
     },
   },
@@ -171,6 +243,19 @@ const myFilters = {
         ],
         color: "lightpink",
         flag: false,
+        clickOn: true,
+      },
+    },
+  },
+  suspensao: {
+    label: "Suspensão",
+    types: {
+      devolvido: {
+        searchFor: [],
+        searchForBold: ["PROCESSO SUSPENSO"],
+        color: "lightgray",
+        flag: false,
+        clickOn: false,
       },
     },
   },
@@ -225,7 +310,9 @@ function changeBackgroundColor(color, _inputId) {
 }
 
 async function updateRow(checkbox, row, type, isOddRow) {
-  clickIcon(row);
+  if (type.clickOn == true) {
+    clickIcon(row);
+  }
   type.flag = true;
   row.style.background = checkbox.checked
     ? type.color
@@ -248,10 +335,13 @@ function updateFilterLabel(checkbox) {
 }
 
 async function checkCitacaoMandado(checkbox, row, type, isOddRow) {
-  for (const hideElement of document.querySelectorAll('tr[id^="rowmovimentacoes"]')) {
-    for (const links of hideElement.querySelectorAll('a')) {
+  for (const hideElement of document.querySelectorAll(
+    'tr[id^="rowmovimentacoes"]'
+  )) {
+    for (const links of hideElement.querySelectorAll("a")) {
       if (links.innerText.includes(type.searchFor[0])) {
-        _ = await updateRow(checkbox, row, type, isOddRow);  type.flag = true;
+        _ = await updateRow(checkbox, row, type, isOddRow);
+        type.flag = true;
         links.style.background = type.color;
         updateFilterLabel(checkbox);
         //clickIcon(row);
@@ -261,7 +351,6 @@ async function checkCitacaoMandado(checkbox, row, type, isOddRow) {
   }
   return false;
 }
-
 
 // TODO - rewrite this function
 function clickIcon(row) {
@@ -293,38 +382,45 @@ async function searchFor(checkbox) {
   //     }
   //   }
   // }
-  
-  Array.from(document.querySelectorAll('tr[id^="mov1Grau"]')).forEach(async function (row) {    
-    Array.from(row.querySelectorAll("b")).forEach(async function (boldElement) {
-      const isOddRow = row.className.toLowerCase().includes("odd");
-      for (const type of Object.values(filter.types)) {
-        for (const arg of type.searchFor) {
-          if (row.innerText.toLowerCase().includes(arg.toLowerCase())) {
-            _ = await updateRow(checkbox, row, type, isOddRow);
-          }
-        }
-        for (const arg of type.searchForBold) {
-          if (
-            boldElement.innerText
-              .toLocaleLowerCase()
-              .includes(arg.toLocaleLowerCase())
-          ) {
-            // TODO: review this if
-            if (
-              type.searchForBold[0] === "JUNTADA DE ANÁLISE DE DECURSO DE PRAZO"
-            ) {
-              clickIcon(row);
-              setTimeout(async function () {
-                await checkCitacaoMandado(checkbox, row, type, isOddRow) ? await updateRow(checkbox, row, type, isOddRow) : "";
-              }, 500);
-            } else {
+
+  Array.from(document.querySelectorAll('tr[id^="mov1Grau"]')).forEach(
+    async function (row) {
+      Array.from(row.querySelectorAll("b")).forEach(async function (
+        boldElement
+      ) {
+        const isOddRow = row.className.toLowerCase().includes("odd");
+        for (const type of Object.values(filter.types)) {
+          for (const arg of type.searchFor) {
+            if (row.innerText.toLowerCase().includes(arg.toLowerCase())) {
               _ = await updateRow(checkbox, row, type, isOddRow);
             }
           }
+          for (const arg of type.searchForBold) {
+            if (
+              boldElement.innerText
+                .toLocaleLowerCase()
+                .includes(arg.toLocaleLowerCase())
+            ) {
+              // TODO: review this if
+              if (
+                type.searchForBold[0] ===
+                "JUNTADA DE ANÁLISE DE DECURSO DE PRAZO"
+              ) {
+                clickIcon(row);
+                setTimeout(async function () {
+                  (await checkCitacaoMandado(checkbox, row, type, isOddRow))
+                    ? await updateRow(checkbox, row, type, isOddRow)
+                    : "";
+                }, 500);
+              } else {
+                _ = await updateRow(checkbox, row, type, isOddRow);
+              }
+            }
+          }
         }
-      }
-    });
-  });
+      });
+    }
+  );
   return true;
 }
 
@@ -342,23 +438,23 @@ async function filtersTitle() {
   return;
 }
 
+async function checkPendencias() {
+  pendencia = document.getElementById("quadroPendencias");
+  if (pendencia.innerText.toLocaleLowerCase().includes("suspensão")) {
+    pendencia.style.color = "red";
+    pendencia.style.fontWeight = "bold";
+    //alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.ice} Processo Suspenso`);
+  } else if (
+    pendencia.innerText.toLocaleLowerCase().includes("hasta") ||
+    pendencia.innerText.toLocaleLowerCase().includes("leilão")
+  ) {
+    pendencia.style.color = "red";
+    pendencia.style.fontWeight = "bold";
 
-async function checkPendencias(){
-  pendencia = document.getElementById('quadroPendencias');
-    if(pendencia.innerText.toLocaleLowerCase().includes("suspensão")){
-      pendencia.style.color = "red";
-      pendencia.style.fontWeight = "bold";
-      //alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.ice} Processo Suspenso`);
-    } else if(pendencia.innerText.toLocaleLowerCase().includes("hasta") || 
-    pendencia.innerText.toLocaleLowerCase().includes("leilão")){
-      pendencia.style.color = "red";
-      pendencia.style.fontWeight = "bold";
-      
-//       alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.hammer} Leilão Designado \n\nConfira as datas em:
-// https://docs.google.com/spreadsheets/d/1L8QdCiRvhWyDBfe2xtcVJFcK_zA1NLc14_wjUvWlwjc/edit?usp=sharing`);
-    }
+    //       alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.hammer} Leilão Designado \n\nConfira as datas em:
+    // https://docs.google.com/spreadsheets/d/1L8QdCiRvhWyDBfe2xtcVJFcK_zA1NLc14_wjUvWlwjc/edit?usp=sharing`);
+  }
 }
-
 
 async function main() {
   _ = await filtersTitle();
@@ -370,9 +466,7 @@ async function main() {
   _ = await checkPendencias();
 }
 
-
 // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 //   console.log(request.message); // Log the received message to the console
 // });
 main();
-

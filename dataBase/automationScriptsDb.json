@@ -2,29 +2,32 @@
     "openAllShowDetails":[
         {
             "command": "click",
-            "selectorType": "partialId",
-            "identifier": "movimentacoes",
+            "selectorType": "onclick",
+            "identifier": "icon",
             "innerText": null,
             "input": null,
-            "timeOut": null
+            "timeOut": null,
+            "color": null
         }
     ],
-    "mandadoOrdenacao":[
+    "analiseJuntada":[
         {
             "command": "click",
             "selectorType": "tag",
-            "identifier": "a",
-            "innerText": "de juntada",
+            "identifier": "#quadroPendencias > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr > td > a",
+            "innerText": null,
             "input": null,
-            "timeOut": null
+            "timeOut": null,
+            "color": null
         },
         {
             "command": "click",
-            "selectorType": "onclick",
-            "identifier": "checkAllEnable",
+            "selectorType": "tag",
+            "identifier": "#analisarJuntadaForm > table.resultTable > tbody > tr:nth-child(1) > td:nth-child(1) > input[type=checkbox]",
             "innerText": null,
             "input": null,
-            "timeOut": null
+            "timeOut": 2000,
+            "color": null
         },
         {
             "command": "click",
@@ -32,33 +35,240 @@
             "identifier": "analisar()",
             "innerText": null,
             "input": null,
-            "timeOut": null
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "id",
+            "identifier": "dispensarButton",
+            "innerText": null,
+            "input": null,
+            "timeOut": 2000,
+            "color": null
         }
     ],
-    "secondPart":[
+    "ordenacaoMadado":[
         {
             "command": "click",
             "selectorType": "tag",
             "identifier": "a",
             "innerText": "Ordenar Cumprimentos",
             "input": null,
-            "timeOut": null
+            "timeOut": null,
+            "color": null
         },
         {
             "command": "select",
             "selectorType": "id",
-            "identifier": "codTipoCumprimentoCartorio",
+            "identifier": "codTipoCumprimentoCartorio", 
             "innerText": "Mandado",
             "input": null,
-            "timeOut": null
+            "timeOut": 3000,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "id",
+            "identifier": "rowPartesMultiplas > td:nth-child(2) > input[type=checkbox]:nth-child(4)",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
         },
         {
             "command": "input",
-            "selectorType": "id",
+            "selectorType": "id",   
             "identifier": "prazoCumprimento",
             "innerText": null,
             "input": "30",
-            "timeOut": null
+            "timeOut": 0,
+            "color": null      },
+        {
+            "command": "input",
+            "selectorType": "id",
+            "identifier": "prazoOficialJustica",
+            "innerText": null,
+            "input": "15",
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "tag",
+            "identifier": "#rowClassificacaoMandado > td:nth-child(2) > input[type=radio]:nth-child(2)",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "id",
+            "identifier": "mandadoDesentranhado",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "id",
+            "identifier": "cumprimentoVinculado",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },        
+        {
+            "command": "select",
+            "selectorType": "id",
+            "identifier": "codNaturezaMandado",
+            "innerText": "Intimação da Penhora",
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "select",
+            "selectorType": "id",
+            "identifier": "codCustasMandado",
+            "innerText": "Citação, intimação e notificação",
+            "input": null,
+            "timeOut": null,
+            "color": null
+        }
+    ],
+    "ordenacaoEditalIntimacao":[
+        {
+            "command": "click",
+            "selectorType": "tag",
+            "identifier": "a",
+            "innerText": "Ordenar Cumprimentos",
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "select",
+            "selectorType": "id",
+            "identifier": "codTipoCumprimentoCartorio", 
+            "innerText": "EDITAL/INTIMAÇÃO",
+            "input": null,
+            "timeOut": 3000,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "id",
+            "identifier": "rowPartesMultiplas > td:nth-child(2) > input[type=checkbox]:nth-child(4)",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "tag",
+            "identifier": "#rowPrazos > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > input[type=radio]:nth-child(1)",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "input",
+            "selectorType": "id",   
+            "identifier": "prazoCumprimento",
+            "innerText": null,
+            "input": "30",
+            "timeOut": null,
+            "color": null
+        }       
+    ],
+    "anlterarClasseProcessual": [
+        {
+            "command": "click",
+            "selectorType": "tag",   
+            "identifier": "#tabItemprefix0 > div.tabCenter > a",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "tag",   
+            "identifier": "#editButton",
+            "innerText": null,
+            "input": null,
+            "timeOut": 2000,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "tag",   
+            "identifier": "#processoEdicaoForm > fieldset > table.form > tbody > tr:nth-child(5) > td:nth-child(2) > a.searchButton",
+            "innerText": null,
+            "input": null,
+            "timeOut": 2000,
+            "color": null
+        },
+        {
+            "command": "click",
+            "selectorType": "tag",   
+            "identifier": "#li_5952 > input[type=radio]:nth-child(2)",
+            "innerText": null,
+            "input": null,
+            "timeOut": null,
+            "color": null
+        }
+    ],
+    "style": [
+        {
+            "command": "style",
+            "selectorType": "tag",   
+            "identifier": "b",
+            "innerText": "Advogado",
+            "input": null,
+            "timeOut": null,
+            "color": "red"
+        },
+        {
+            "command": "style",
+            "selectorType": "tag",   
+            "identifier": "*",
+            "innerText": "1116 - Execução Fiscal",
+            "input": null,
+            "timeOut": null,
+            "color": "blue"
+        },
+        {
+            "command": "style",
+            "selectorType": "tag",   
+            "identifier": "b",
+            "innerText": "JUNTADA DE PETIÇÃO DE MANIFESTAÇÃO DA PARTE",
+            "input": null,
+            "timeOut": null,
+            "color": "blue"
+        },
+        {
+            "command": "style",
+            "selectorType": "tag",   
+            "identifier": "tr",
+            "innerText": "JUNTADA DE LAUDO",
+            "input": null,
+            "timeOut": null,
+            "color": "green"
+        },
+        {
+            "command": "style",
+            "selectorType": "tag",   
+            "identifier": "tr",
+            "innerText": "CONCLUSOS PARA DECISÃO",
+            "input": null,
+            "timeOut": null,
+            "color": "lightgreen"
         }
     ]
 }

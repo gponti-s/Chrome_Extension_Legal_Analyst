@@ -7,11 +7,7 @@ chrome.runtime.onMessage.addListener(async function (
   sendResponse
 ) {
   if (request.action === "automation") {
-    console.log("Message received:", request.action);
-    _ = await testeAutomation();
-    sendResponse({ Text: "Message received in background.js" });
-  }
-  if (request.action === "automationPersonalized") {
+    console.log("chamei a funcao automation", request.Option)
     automation(request.Option);
   }
 });
@@ -39,21 +35,6 @@ async function sendMessageToContentScript(_action, _content = null, _object = nu
   });
 }
 
-async function testeAutomation() {
-  const linksDb = ["de juntada", "0010571-02.2002.8.16.0014"];
-
-  for (let i = 0; i < linksDb.length; i++) {
-    const response = await sendMessageToContentScript("automation", linksDb[i]);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    // const load = await sendMessageToContentScript("load");
-    // while(!load.Boolean){
-    //   await new Promise(resolve => setTimeout(resolve, 2000));
-    //   load = await sendMessageToContentScript("load");
-    // }
-    // console.log(load.Boolean);
-  }
-}
-
 // TODO: make an env for this path  
 async function automation(_key) {
   fetch("dataBase/automationScriptsDb.json")
@@ -62,8 +43,8 @@ async function automation(_key) {
       if (data[_key]) { // Check if data[_key] is defined
         for (let i = 0; i < data[_key].length; i++) {
           console.log("service_worker automationPers.:", data[_key][i]);
+          await new Promise((resolve) => setTimeout(resolve, data[_key][i].timeOut));
           sendMessageToContentScript("automation", null, data[_key][i])
-          await new Promise((resolve) => setTimeout(resolve, 2000));
         }
       } else {
         console.error("Data for key", _key, "is undefined.");
