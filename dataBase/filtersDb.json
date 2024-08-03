@@ -1,6 +1,4 @@
 
-
-
 {
   "content_scripts": [
     {
@@ -9,11 +7,6 @@
       "all_frames": true
     }
   ],
-
-
-
-
-
 
     "citacao": {
         "label": "Citação",

@@ -40,15 +40,20 @@ async function automation(_key) {
   fetch("dataBase/automationScriptsDb.json")
     .then((response) => response.json())
     .then(async (data) => {
-      if (data[_key]) { // Check if data[_key] is defined
-        for (let i = 0; i < data[_key].length; i++) {
-          console.log("service_worker automationPers.:", data[_key][i]);
-          await new Promise((resolve) => setTimeout(resolve, data[_key][i].timeOut));
-          sendMessageToContentScript("automation", null, data[_key][i])
+      if (data[_key] && data[_key].script) { // Check if data[_key] and data[_key].script are defined
+        const scriptArray = data[_key].script;
+        for (let i = 0; i < scriptArray.length; i++) {
+          console.log("service_worker automationPers.:", scriptArray[i]);
+          await new Promise((resolve) => setTimeout(resolve, scriptArray[i].timeOut || 0));
+          sendMessageToContentScript("automation", null, scriptArray[i]);
         }
       } else {
-        console.error("Data for key", _key, "is undefined.");
+        console.error("Data for key", _key, "or data[_key].script is undefined.");
       }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
 }
+
 
