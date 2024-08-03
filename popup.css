@@ -4,5 +4,20 @@ body{
 }
 
 .btn {
-    margin: 3px;
+    margin: 4px;
+}
+
+#notificationIcon {
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+    font-weight: 900; 
+    font-size: 20px;    
+  }
+#notificationIcon:hover {
+    color: black; /* Change color on hover */
+    background-color: #d3d6db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    border-radius: 25px;
 }

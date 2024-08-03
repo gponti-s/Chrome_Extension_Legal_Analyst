@@ -295,5 +295,38 @@
                 "color": "lightgreen"
             }
         ]
+    },
+    "ordenacaoOficioBaixaConstricao": {
+        "textContent": "Ofício Baixa",
+        "divIdToAppend": "ordenationButttons",
+        "script": [
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "a",
+                "innerText": "Ordenar Cumprimentos",
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "select",
+                "selectorType": "id",
+                "identifier": "codTipoCumprimentoCartorio",
+                "innerText": "OFÍCIO DE BAIXA DE CONSTRIÇÃO",
+                "input": null,
+                "timeOut": 3000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#rowPrazos > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > input[type=radio]:nth-child(2)",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            }
+        ]
     }
 }
