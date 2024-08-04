@@ -1,8 +1,27 @@
-// TODO: return the errors as a sendResponse instead of console.log
+//############################# Setup Center ####################################
 
+// TODO: return the errors as a sendResponse instead of console.log
 let pageLoaded = false;
 console.log("sarting....", pageLoaded);
 window.addEventListener("load", () => (pageLoaded = true));
+
+
+async function loadConfig() {
+  try {
+    const response = await fetch(chrome.runtime.getURL('config.json'));
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const config = await response.json();
+    console.log('Config from content.js:', config);
+  } catch (error) {
+    console.error('Error loading config in content.js:', error);
+  }
+}
+
+loadConfig();
+
+//############################# Message Center ####################################
 
 // Listen for messages from the service_worker script
 chrome.runtime.onMessage.addListener(async function (
@@ -33,6 +52,8 @@ chrome.runtime.onMessage.addListener(async function (
   }
 });
 
+//############################# Operational Center ####################################
+
 // TODO: check the return inside the if statement: change the logic > if (!elements || elements.length === 0)
 async function findElementInFrames(selector) {
   let elementInCurrentDocument = document.querySelectorAll(selector);
@@ -46,7 +67,7 @@ async function findElementInFrames(selector) {
   return elementInCurrentDocument;
 }
 
-// TODO: araise this function: Function to wait for an iframe to load  - NOT IN USE
+// TODO: erase this function: Function to wait for an iframe to load  - NOT IN USE
 function waitForIframeLoad(iframe) {
   return new Promise((resolve) => {
     iframe.onload = () =>

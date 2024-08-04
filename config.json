@@ -1,0 +1,17 @@
+{
+    "actions": {
+      "fetchAutomationButtons": "fetchAutomationButtons",
+      "automation": "automation"
+    },
+    "style":{
+      "buttonClassName": "btn btn-secondary btn-sm btn-spacing"
+    },
+    "api": {
+      "databaseUrlAutomation": "dataBase/automationScriptsDb.json"
+    },
+    "errorMessages":{
+        "fetchingAutomation": "From Service_Worker: fetching automation data",
+        "popupMessageResponse": "From Popup: Invalid response received from Service_Worker:"
+    }
+  }
+  

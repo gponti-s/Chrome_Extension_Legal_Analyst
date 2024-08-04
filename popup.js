@@ -1,4 +1,15 @@
-console.log("from popup...");
+//############################# Setup Center ####################################
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadConfig().then(createButtons);
+});
+
+let config = {};
+
+async function loadConfig() {
+  const response = await fetch(chrome.runtime.getURL('config.json'));
+  config = await response.json();
+}
 
 //############################# Message Center ####################################
 
@@ -17,7 +28,6 @@ async function sendMessageToServiceWorker(_action, _content = null, _option = nu
   });
 }
 
-
 //############################# Notification Center ####################################
 
 // TODO: Create dinamic notifications
@@ -35,11 +45,8 @@ document
 
 //############################# Dinamic Buttons ####################################
 
-// TODO: change the dataUpdated to DOMContentLoaded
-document.addEventListener('dataUpdated', createButtons);
-
 function createButtons() {
-  sendMessageToServiceWorker("fetchAutomationButtons")
+  sendMessageToServiceWorker(config.actions.fetchAutomationButtons)
     .then((response) => {
       // Check if response is valid
       if (response && typeof response === 'object') {
@@ -50,21 +57,19 @@ function createButtons() {
         sortedEntries.forEach(function ([key, value]) {
           const newButton = document.createElement("button");
           newButton.type = "button";
-          newButton.className = "btn btn-secondary btn-sm btn-spacing"; // Add btn-spacing class
+          newButton.className = config.style.buttonClassName; // Add btn-spacing class
           newButton.id = key;
           newButton.textContent = value.textContent;
           document.getElementById(value.divIdToAppend).appendChild(newButton);
           newButton.addEventListener("click", async () => {
-            sendMessageToServiceWorker("automation", null, key);
+            sendMessageToServiceWorker(config.actions.automation, null, key);
           });
         });
       } else {
-        console.error("Invalid response received from background script:", response);
+        console.error(config.errorMessages.popupMessageResponse, response);
       }
     })
     .catch((error) => {
-      console.error("Error in sendMessageToServiceWorker:", error);
+      console.error(config.errorMessages.popupMessageResponse, error);
     });
 }
-
-document.dispatchEvent(new Event('dataUpdated'));

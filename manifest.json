@@ -29,5 +29,13 @@
     "16": "charge.png",
     "48": "charge.png",
     "128": "charge.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "config.json"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

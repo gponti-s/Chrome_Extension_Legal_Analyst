@@ -1,15 +1,24 @@
-console.log("from service_worker...");
+//############################# Setup Center ####################################
+
+let config = {};
+
+async function loadConfig() {
+  const response = await fetch(chrome.runtime.getURL('config.json'));
+  config = await response.json();
+}
+
+loadConfig();
+
 
 //############################# Message Center ####################################
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "automation") {
-    console.log("chamei a funcao automation", request.Option);
-    automation(request.Option);
+  if (request.action === config.actions.automation) {
+    automationRunScript(request.Option);
     sendResponse(true);
-  } else if (request.action === "fetchAutomationButtons") {
-    fetchAutomationButtons()
+  } else if (request.action === config.actions.fetchAutomationButtons) {
+    fetchAutomationData()
       .then((data) => {
         sendResponse(data); // Send the fetched data
       })
@@ -48,23 +57,19 @@ async function sendMessageToContentScript(
   });
 }
 
-
 //############################# Fetch Center ####################################
 
-// TODO: make an env for this path
-async function automation(_key) {
-  fetch("dataBase/automationScriptsDb.json")
-    .then((response) => response.json())
+async function automationRunScript(_key) {
+  fetchAutomationData()
     .then(async (data) => {
       if (data[_key] && data[_key].script) {
         // Check if data[_key] and data[_key].script are defined
         const scriptArray = data[_key].script;
         for (let i = 0; i < scriptArray.length; i++) {
-          console.log("service_worker automationPers.:", scriptArray[i]);
           await new Promise((resolve) =>
             setTimeout(resolve, scriptArray[i].timeOut || 0)
           );
-          sendMessageToContentScript("automation", null, scriptArray[i]);
+          sendMessageToContentScript(config.actions.automation, null, scriptArray[i]);
         }
       } else {
         console.error(
@@ -74,19 +79,15 @@ async function automation(_key) {
         );
       }
     })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
 }
 
-async function fetchAutomationButtons() {
+async function fetchAutomationData() {
   try {
-    const response = await fetch("dataBase/automationScriptsDb.json");
+    const response = await fetch(config.api.databaseUrlAutomation);
     const data = await response.json();
-    console.log("response", data);
-    return data; // Assuming `data.Object` is the correct structure
+    return data;
   } catch (error) {
-    console.error("Error fetching automation buttons:", error);
-    throw new Error("Failed to fetch automation buttons");
+    console.error(config.errorMessages.fetchingAutomation, error);
+    throw new Error(config.errorMessages.fetchingAutomation);
   }
 }
