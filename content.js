@@ -1,25 +1,25 @@
 //############################# Setup Center ####################################
 
 // TODO: return the errors as a sendResponse instead of console.log
-let pageLoaded = false;
-console.log("sarting....", pageLoaded);
-window.addEventListener("load", () => (pageLoaded = true));
+// let pageLoaded = false;
+// console.log("sarting....", pageLoaded);
+// window.addEventListener("load", () => (pageLoaded = true));
 
 
-async function loadConfig() {
-  try {
-    const response = await fetch(chrome.runtime.getURL('config.json'));
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const config = await response.json();
-    console.log('Config from content.js:', config);
-  } catch (error) {
-    console.error('Error loading config in content.js:', error);
-  }
-}
+// async function loadConfig() {
+//   try {
+//     const response = await fetch(chrome.runtime.getURL('config.json'));
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+//     const config = await response.json();
+//     console.log('Config from content.js:', config);
+//   } catch (error) {
+//     console.error('Error loading config in content.js:', error);
+//   }
+// }
 
-loadConfig();
+// loadConfig();
 
 //############################# Message Center ####################################
 

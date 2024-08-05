@@ -1,14 +1,27 @@
 //############################# Setup Center ####################################
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadConfig().then(createButtons);
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await loadConfig();
+    createButtons();
+  } catch (error) {
+    console.error('Error loading configuration:', error);
+  }
 });
 
 let config = {};
 
 async function loadConfig() {
-  const response = await fetch(chrome.runtime.getURL('config.json'));
-  config = await response.json();
+  try {
+    const response = await fetch(chrome.runtime.getURL('config.json'));
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    config = await response.json();
+  } catch (error) {
+    console.error('Failed to load config:', error);
+    throw error;  // Re-throw the error to ensure createButtons isn't called
+  }
 }
 
 //############################# Message Center ####################################
