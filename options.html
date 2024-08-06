@@ -1,42 +1,72 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <img src="charge.png" style="display: inline-block; vertical-align: super;"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+       <link rel="stylesheet" href="./options.css"/>
         <title>Projudi Power</title>
     </head>
-    <body>
+    <body class="p-3 mb-2 bg-body-tertiary">
+        <div class="d-flex justify-content-left align-items-center">
+            <img id="boltImage" class="col-auto" src="charge.png"/>
+            <h1 class="col-auto">Projudi Power</h1>
+        </div>
+        <br/>
         <form action="" id="automation">
-            <section id="automation0" class="automation-section">
-                <select class="command">
-                    <option value="click">Click</option>
-                    <option value="select">Select</option>
-                </select>
-                <select class="selector-type">
-                    <option value="tag">Tag</option>
-                </select>
-                <label for="identifier">identifier:</label>
-                <input class="identifier" type="text">
-                <label for="innerText">innerText:</label>
-                <input class="inner-text" type="text">
-                <label for="input">input:</label>
-                <input class="input" type="text">
-                <select class="timeout">
-                    <option value="null">nenhum</option>
-                    <option value="1000">1 seg</option>
-                    <option value="2000">2 seg</option>
-                    <option value="3000">3 seg</option>
-                    <option value="4000">4 seg</option>
-                    <option value="5000">5 seg</option>
-                </select>
-                <select class="color">
-                    <option value="red">red</option>
-                </select>
-                
+            <section id="automation0" class="form-group automation-section">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="command">Command:</label>
+                        <select class="form-control command">
+                            <option value="click">Click</option>
+                            <option value="select">Select</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="selector">Selector:</label>
+                        <select class="form-control selector-type">
+                            <option value="tag">Tag</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="identifier">Identifier:</label>
+                        <input class="form-control identifier" type="text">
+                    </div>
+                    <div class="col-auto">
+                        <label for="innerText">InnerText:</label>
+                        <input class="form-control inner-text" type="text">
+                    </div>
+                    <div class="col-auto">
+                        <label for="input">Input:</label>
+                        <input class="form-control input" type="text">
+                    </div>
+                    <div class="col-auto">
+                        <label for="timeout">Timeout:</label>
+                        <select class="form-control timeout">
+                            <option value="null">Nenhum</option>
+                            <option value="1000">1 seg</option>
+                            <option value="2000">2 seg</option>
+                            <option value="3000">3 seg</option>
+                            <option value="4000">4 seg</option>
+                            <option value="5000">5 seg</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="color">Color:</label>
+                        <select class="form-control color">
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <i style="display: none;" class="bi bi-trash"></i>
+                    </div>
+                </div>
+                <hr/>
             </section>
         </form>
         <br>
         <div id="centerControl">
-            <button id="addNewLine" type="button" class="btn btn-secondary">Add Line</button>
+            <button id="addNewLine" type="button" class="btn btn-secondary">Add New Line</button>
             <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
         </div>
         <script src="options.js"></script>

@@ -1,0 +1,17 @@
+#boltImage {
+    width: 28px;
+    height: 24px;
+}
+
+.bi-trash {
+    align-self: center;
+    font-weight: 900; 
+    font-size: 20px;    
+  }
+.bi-trash:hover {
+    color: black; /* Change color on hover */
+    background-color: #d3d6db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    border-radius: 25px;
+}

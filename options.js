@@ -8,6 +8,13 @@ function cloneNode() {
     const newSection = originalSection.cloneNode(true);
     newSection.id = 'automation' + sectionCount;
 
+    const deleteIcon = newSection.querySelector('.bi-trash');
+    deleteIcon.style.display = 'inline-block';
+
+    deleteIcon.addEventListener('click', () => {
+        newSection.remove();
+    });
+    
     document.getElementById('automation').appendChild(newSection);
 }
 
@@ -20,6 +27,8 @@ function deleteLastNode(){
         lastSection.parentNode.removeChild(lastSection);
     }
 }
+
+document.getElementById('deleteLine').addEventListener('click', deleteLastNode);
 
 //########################## Push Section ######################################
 
