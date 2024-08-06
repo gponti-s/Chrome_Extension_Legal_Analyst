@@ -6,21 +6,21 @@
     </head>
     <body>
         <form action="" id="automation">
-            <section id="automation1">
-                <select id="command">
+            <section id="automation0" class="automation-section">
+                <select class="command">
                     <option value="click">Click</option>
                     <option value="select">Select</option>
                 </select>
-                <select name="" id="selectorType">
+                <select class="selector-type">
                     <option value="tag">Tag</option>
                 </select>
                 <label for="identifier">identifier:</label>
-                <input id="identifier" type="text">
+                <input class="identifier" type="text">
                 <label for="innerText">innerText:</label>
-                <input id="innerText" type="text">
+                <input class="inner-text" type="text">
                 <label for="input">input:</label>
-                <input id="input" type="text">
-                <select name="" id="timeOut">
+                <input class="input" type="text">
+                <select class="timeout">
                     <option value="null">nenhum</option>
                     <option value="1000">1 seg</option>
                     <option value="2000">2 seg</option>
@@ -28,11 +28,17 @@
                     <option value="4000">4 seg</option>
                     <option value="5000">5 seg</option>
                 </select>
-                <select name="" id="color">
+                <select class="color">
                     <option value="red">red</option>
                 </select>
+                
             </section>
-            <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
         </form>
+        <br>
+        <div id="centerControl">
+            <button id="addNewLine" type="button" class="btn btn-secondary">Add Line</button>
+            <button id="submit" type="submit" class="btn btn-secondary">Submit</button>
+        </div>
+        <script src="options.js"></script>
     </body>
 </html>
