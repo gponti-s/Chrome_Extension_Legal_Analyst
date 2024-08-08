@@ -55,6 +55,10 @@ document
     });
   });
 
+  document.getElementById('gridIcon').addEventListener('click', function() {
+    chrome.runtime.openOptionsPage();
+});
+
 
 //############################# Dinamic Buttons ####################################
 

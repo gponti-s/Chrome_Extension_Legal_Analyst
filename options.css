@@ -3,12 +3,12 @@
     height: 24px;
 }
 
-.bi-trash {
+.bi {
     align-self: center;
     font-weight: 900; 
     font-size: 20px;    
   }
-.bi-trash:hover {
+.bi:hover {
     color: black; /* Change color on hover */
     background-color: #d3d6db;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow on hover */

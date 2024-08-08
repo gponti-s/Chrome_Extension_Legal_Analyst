@@ -5,6 +5,10 @@ let config = {};
 async function loadConfig() {
   const response = await fetch(chrome.runtime.getURL('config.json'));
   config = await response.json();
+
+  fetch("dataBase/FlagsDb.json")
+  .then(response => response.json())
+  .then(data => console.log(data));
 }
 
 loadConfig();

@@ -7,17 +7,41 @@ body{
     margin: 4px;
 }
 
-#notificationIcon {
-    position: absolute;
-    top: 20px; 
-    right: 20px; 
+.navegationIcons {
+    
     font-weight: 900; 
     font-size: 20px;    
   }
-#notificationIcon:hover {
+
+.navegationIcons:hover {
     color: black; /* Change color on hover */
-    background-color: #d3d6db;
+    background-color: #dce0e5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow on hover */
     transform: scale(1.1); /* Slightly enlarge the icon on hover */
     border-radius: 25px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.navegationIcons:active{
+    color: blue;
+    background-color: #c1c4c9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+#notificationIcon{
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+}
+
+#filterIcon{
+    position: absolute;
+    top: 20px; 
+    right: 50px; 
+}
+
+#gridIcon{
+    position: absolute;
+    top: 20px;
+    right: 80px;
 }

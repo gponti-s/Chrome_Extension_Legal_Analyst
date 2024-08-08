@@ -68,7 +68,9 @@ const myFilters = {
         searchForBold: [
           "EXPEDIÇÃO DE DESBLOQUEIO SISBAJUD",
           "JUNTADA DE PENHORA SOLICITADA BACENJUD",
+          "EXPEDIÇÃO DE BACENJUD - BLOQUEIO AUTOMATIZADO",
           "EXPEDIÇÃO DE BACENJUD BLOQUEIO - AUTOMATIZADO",
+          "EXPEDIÇÃO DE SISBAJUD - BLOQUEIO AUTOMATIZADO",
           "EXPEDIÇÃO DE DESBLOQUEIO BACENJUD",
           "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD/SISBAJUD",
           "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD",
@@ -254,6 +256,18 @@ const myFilters = {
         searchFor: [],
         searchForBold: ["PROCESSO SUSPENSO"],
         color: "lightgray",
+        flag: false,
+        clickOn: false,
+      },
+    },
+  },
+  cartaPrecatoria: {
+    label: "Carta Precatória",
+    types: {
+      devolvido: {
+        searchFor: [],
+        searchForBold: ["JUNTADA DE CARTA PRECATÓRIA", "JUNTADA DE DEVOLUÇÃO DE CARTA PRECATÓRIA"],
+        color: "#ffdbbb",
         flag: false,
         clickOn: false,
       },
