@@ -471,14 +471,12 @@ async function checkPendencias() {
   }
 }
 
-async function checkFilterFlag() {
-  const response = await chrome.runtime.sendMessage({request: "filterFlag"});  
-  return response.filter
-};
 
 async function main() {
-  const filterFlag = await checkFilterFlag();
-  if(filterFlag == true){
+  chrome.storage.local.get(['filter'], async function(result) {
+    const filterFlag = result.filter; // Assuming 'filter' is the key in storage
+    console.log('Filter flag:', filterFlag);
+    if(filterFlag == true){
     _ = await filtersTitle();
     Object.entries(myFilters).forEach(function ([key, value]) {
       const checkbox = newCheckbox(key, value.label);
@@ -489,25 +487,24 @@ async function main() {
     //_ = await checkPendencias();
     //TODO: temporary => to keep the checkAll checked
     newCheckAll.click();
+  } else{
+    //newCheckAll.click();
   }
+  });
 
 }
 
-// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-//   console.log(request.message); // Log the received message to the console
-// });
 main();
-
-
 
 chrome.runtime.onMessage.addListener(async function (
   request,
   sender,
   sendResponse
 ) {
+  console.log("resquest: ", request)
   switch (request.action) {
-    case "main":
-      main();
+    case "filterUpdate":
+      //main();
       console.log("message received by filter");
       break;
     default:

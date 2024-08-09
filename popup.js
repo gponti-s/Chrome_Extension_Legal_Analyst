@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('Error loading configuration:', error);
   }
+  console.log("page loaded");
+  _ = await filterIconUpdate();
+ 
 });
 
 let config = {};
@@ -60,6 +63,28 @@ document
   document.getElementById('gridIcon').addEventListener('click', function() {
     chrome.runtime.openOptionsPage();
 });
+
+document.getElementById("filterIcon").addEventListener("click", () => {
+  chrome.storage.local.get(['filter'], function(result) {
+    chrome.storage.local.set({ filter: !result.filter }, async function() {
+      _ = filterIconUpdate();
+       _ = await sendMessageToServiceWorker("filterUpdate", null, null);
+  });
+  });
+});
+
+async function filterIconUpdate(){
+  chrome.storage.local.get(['filter'], function(result){
+    console.log("function filterIconUpdate called");
+    const icon = document.getElementById("filterIcon");
+    if (result.filter == true){
+      icon.className = "bi bi-funnel-fill navegationIcons"
+    }else{
+      icon.className = "bi bi-funnel navegationIcons"
+    }
+  })
+  return true;
+}
 
 
 //############################# Dinamic Buttons ####################################

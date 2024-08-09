@@ -13,17 +13,12 @@ loadConfig();
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.request === "filterFlag") {
-    console.log("request: ", request.request);
-    fetch("dataBase/FlagsDb.json")
-      .then((response) => response.json())
-      .then((data) => {
-        sendResponse(data); // Send the fetched data
-      })
-      .catch((error) => {
-        sendResponse({ error: error.message });
-      });
-    return true; // Indicate that sendResponse will be called asynchronously
+  if (request.action === "filterUpdate") {
+    console.log("Worker:", request.action);
+    sendMessageToContentScript(request.action, null, null);
+    sendResponse({ success: true });
+    
+    return true; // Keep the message channel open for async operations
   }
   if (request.action === config.actions.automation) {
     automationRunScript(request.Option);
