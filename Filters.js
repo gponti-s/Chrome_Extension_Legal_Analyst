@@ -452,6 +452,7 @@ async function filtersTitle() {
   return;
 }
 
+//TODO: implement Try in this function
 async function checkPendencias() {
   pendencia = document.getElementById("quadroPendencias");
   if (pendencia.innerText.toLocaleLowerCase().includes("suspensão")) {
@@ -470,17 +471,48 @@ async function checkPendencias() {
   }
 }
 
+async function checkFilterFlag() {
+  const response = await chrome.runtime.sendMessage({request: "filterFlag"});  
+  return response.filter
+};
+
 async function main() {
-  _ = await filtersTitle();
-  Object.entries(myFilters).forEach(function ([key, value]) {
-    const checkbox = newCheckbox(key, value.label);
-    addEvent(checkbox);
-  });
-  checkAll(newCheckbox("checkAll", "TODOS"));
-  _ = await checkPendencias();
+  const filterFlag = await checkFilterFlag();
+  if(filterFlag == true){
+    _ = await filtersTitle();
+    Object.entries(myFilters).forEach(function ([key, value]) {
+      const checkbox = newCheckbox(key, value.label);
+      addEvent(checkbox);
+    });
+    const newCheckAll = newCheckbox("checkAll", "TODOS")
+    checkAll(newCheckAll);
+    //_ = await checkPendencias();
+    //TODO: temporary => to keep the checkAll checked
+    newCheckAll.click();
+  }
+
 }
 
 // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 //   console.log(request.message); // Log the received message to the console
 // });
 main();
+
+
+
+chrome.runtime.onMessage.addListener(async function (
+  request,
+  sender,
+  sendResponse
+) {
+  switch (request.action) {
+    case "main":
+      main();
+      console.log("message received by filter");
+      break;
+    default:
+      // Handle unknown action
+      console.error("Unknown action:", request.action);
+      sendResponse(undefined);
+  }
+});

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 let config = {};
 
+
+//TODO: Refactor this function. Change fetch to sendMessage. The work_server should do the fetch
 async function loadConfig() {
   try {
     const response = await fetch(chrome.runtime.getURL('config.json'));

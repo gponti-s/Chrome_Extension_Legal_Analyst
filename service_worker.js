@@ -3,21 +3,28 @@
 let config = {};
 
 async function loadConfig() {
-  const response = await fetch(chrome.runtime.getURL('config.json'));
+  const response = await fetch(chrome.runtime.getURL("config.json"));
   config = await response.json();
-
-  fetch("dataBase/FlagsDb.json")
-  .then(response => response.json())
-  .then(data => console.log(data));
 }
 
 loadConfig();
-
 
 //############################# Message Center ####################################
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.request === "filterFlag") {
+    console.log("request: ", request.request);
+    fetch("dataBase/FlagsDb.json")
+      .then((response) => response.json())
+      .then((data) => {
+        sendResponse(data); // Send the fetched data
+      })
+      .catch((error) => {
+        sendResponse({ error: error.message });
+      });
+    return true; // Indicate that sendResponse will be called asynchronously
+  }
   if (request.action === config.actions.automation) {
     automationRunScript(request.Option);
     sendResponse(true);
@@ -32,7 +39,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true; // Indicate that sendResponse will be called asynchronously
   }
 });
-
 
 // send message to scripts
 async function sendMessageToContentScript(
@@ -61,28 +67,29 @@ async function sendMessageToContentScript(
   });
 }
 
+sendMessageToContentScript("main", null, null);
+
 //############################# Fetch Center ####################################
 
 async function automationRunScript(_key) {
-  fetchAutomationData()
-    .then(async (data) => {
-      if (data[_key] && data[_key].script) {
-        // Check if data[_key] and data[_key].script are defined
-        const scriptArray = data[_key].script;
-        for (let i = 0; i < scriptArray.length; i++) {
-          await new Promise((resolve) =>
-            setTimeout(resolve, scriptArray[i].timeOut || 0)
-          );
-          sendMessageToContentScript(config.actions.automation, null, scriptArray[i]);
-        }
-      } else {
-        console.error(
-          "Data for key",
-          _key,
-          "or data[_key].script is undefined."
+  fetchAutomationData().then(async (data) => {
+    if (data[_key] && data[_key].script) {
+      // Check if data[_key] and data[_key].script are defined
+      const scriptArray = data[_key].script;
+      for (let i = 0; i < scriptArray.length; i++) {
+        await new Promise((resolve) =>
+          setTimeout(resolve, scriptArray[i].timeOut || 0)
+        );
+        sendMessageToContentScript(
+          config.actions.automation,
+          null,
+          scriptArray[i]
         );
       }
-    })
+    } else {
+      console.error("Data for key", _key, "or data[_key].script is undefined.");
+    }
+  });
 }
 
 async function fetchAutomationData() {
