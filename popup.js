@@ -1,15 +1,24 @@
 //############################# Setup Center ####################################
 
+// Function to ensure the service worker is active before sending a message
+async function ensureServiceWorkerIsReady() {
+  const registration = await navigator.serviceWorker.ready;
+  return registration.active;
+}
+
+// Use this function before sending a message
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    await loadConfig();
-    createButtons();
+    const worker = await ensureServiceWorkerIsReady(); // Wait for service worker
+    if (worker) {
+      await loadConfig();
+      createButtons();
+      console.log("page loaded");
+      _ = await filterIconUpdate();
+    }
   } catch (error) {
     console.error('Error loading configuration:', error);
   }
-  console.log("page loaded");
-  _ = await filterIconUpdate();
- 
 });
 
 let config = {};
@@ -56,7 +65,7 @@ document
       type: "basic",
       iconUrl: "charge.png",
       title: "Notification Title",
-      message: "Notification Message",
+      message: "Você não tem notificações",
     });
   });
 
@@ -64,25 +73,16 @@ document
     chrome.runtime.openOptionsPage();
 });
 
-document.getElementById("filterIcon").addEventListener("click", () => {
-  chrome.storage.local.get(['filter'], function(result) {
-    chrome.storage.local.set({ filter: !result.filter }, async function() {
-      _ = filterIconUpdate();
-       _ = await sendMessageToServiceWorker("filterUpdate", null, null);
-  });
-  });
+document.getElementById("filterIcon").addEventListener("click", async () => {
+  _ = await sendMessageToServiceWorker("filterUpdate", null, null);
+  _ = filterIconUpdate();
 });
 
+
 async function filterIconUpdate(){
-  chrome.storage.local.get(['filter'], function(result){
-    console.log("function filterIconUpdate called");
-    const icon = document.getElementById("filterIcon");
-    if (result.filter == true){
-      icon.className = "bi bi-funnel-fill navegationIcons"
-    }else{
-      icon.className = "bi bi-funnel navegationIcons"
-    }
-  })
+  const filterValue = await sendMessageToServiceWorker("filterValue", null, null);
+  const icon = document.getElementById("filterIcon");
+  icon.className = filterValue.filter ? "bi bi-funnel-fill navegationIcons" : "bi bi-funnel navegationIcons";
   return true;
 }
 

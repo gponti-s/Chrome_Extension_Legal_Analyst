@@ -13,27 +13,46 @@ loadConfig();
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "filterUpdate") {
-    console.log("Worker:", request.action);
-    sendMessageToContentScript(request.action, null, null);
-    sendResponse({ success: true });
-    
-    return true; // Keep the message channel open for async operations
-  }
-  if (request.action === config.actions.automation) {
-    automationRunScript(request.Option);
-    sendResponse(true);
-  } else if (request.action === config.actions.fetchAutomationButtons) {
-    fetchAutomationData()
-      .then((data) => {
-        sendResponse(data); // Send the fetched data
-      })
-      .catch((error) => {
-        sendResponse({ error: error.message });
+  switch (request.action) {
+    case "filterUpdate":
+      chrome.storage.local.get(['filter'], function(result) {
+        chrome.storage.local.set({ filter: !result.filter }, async function() {
+          sendMessageToContentScript(request.action, null, null);
+          sendResponse(!result.filter);
       });
-    return true; // Indicate that sendResponse will be called asynchronously
+      });
+      return true; 
+
+    case "filterValue":
+      chrome.storage.local.get(['filter'], function(response) {
+        sendResponse(response);
+      });
+
+      return true; // Keep the message channel open for async operations
+
+    case config.actions.automation:
+      automationRunScript(request.Option);
+      sendResponse(true);
+      break;
+
+    case config.actions.fetchAutomationButtons:
+      fetchAutomationData()
+        .then((data) => {
+          sendResponse(data); // Send the fetched data
+        })
+        .catch((error) => {
+          sendResponse({ error: error.message });
+        });
+
+      return true; // Indicate that sendResponse will be called asynchronously
+
+    default:
+      console.warn("Unhandled action:", request.action);
+      sendResponse({ error: "Unknown action" });
+      break;
   }
 });
+
 
 // send message to scripts
 async function sendMessageToContentScript(
