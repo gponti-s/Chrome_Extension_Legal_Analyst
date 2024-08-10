@@ -1,42 +1,31 @@
 //############################# Setup Center ####################################
 
+let config = {};
+
 // Function to ensure the service worker is active before sending a message
 async function ensureServiceWorkerIsReady() {
   const registration = await navigator.serviceWorker.ready;
   return registration.active;
 }
 
+
 // Use this function before sending a message
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const worker = await ensureServiceWorkerIsReady(); // Wait for service worker
     if (worker) {
-      await loadConfig();
-      createButtons();
-      console.log("page loaded");
-      _ = await filterIconUpdate();
+      chrome.storage.local.get(['config'], function(response) {
+        config = response.config;
+        console.log(config);
+        createButtons(); // Move createButtons inside the callback
+        filterIconUpdate(); // Call filterIconUpdate after the config is loaded
+      });
     }
   } catch (error) {
     console.error('Error loading configuration:', error);
   }
 });
 
-let config = {};
-
-
-//TODO: Refactor this function. Change fetch to sendMessage. The work_server should do the fetch
-async function loadConfig() {
-  try {
-    const response = await fetch(chrome.runtime.getURL('config.json'));
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    config = await response.json();
-  } catch (error) {
-    console.error('Failed to load config:', error);
-    throw error;  // Re-throw the error to ensure createButtons isn't called
-  }
-}
 
 //############################# Message Center ####################################
 
@@ -55,8 +44,9 @@ async function sendMessageToServiceWorker(_action, _content = null, _option = nu
   });
 }
 
-//############################# Notification Center ####################################
+//############################# Icons Manager Center ####################################
 
+// ####### Notification Icon #######
 // TODO: Create dinamic notifications
 document
   .getElementById("notificationIcon")
@@ -73,11 +63,11 @@ document
     chrome.runtime.openOptionsPage();
 });
 
+// ####### Filter Icon #######
 document.getElementById("filterIcon").addEventListener("click", async () => {
   _ = await sendMessageToServiceWorker("filterUpdate", null, null);
   _ = filterIconUpdate();
 });
-
 
 async function filterIconUpdate(){
   const filterValue = await sendMessageToServiceWorker("filterValue", null, null);
@@ -85,7 +75,6 @@ async function filterIconUpdate(){
   icon.className = filterValue.filter ? "bi bi-funnel-fill navegationIcons" : "bi bi-funnel navegationIcons";
   return true;
 }
-
 
 //############################# Dinamic Buttons ####################################
 

@@ -3,11 +3,57 @@
 let config = {};
 
 async function loadConfig() {
-  const response = await fetch(chrome.runtime.getURL("config.json"));
-  config = await response.json();
+  config = chrome.storage.local.get(['config'], (result)=>{
+    config = result.config;
+  });
 }
 
-loadConfig();
+async function initializeStorage() {
+  // Check if initialization has already been done
+  chrome.storage.local.get(['initialized'], (result) => {
+    if (!result.initialized) {
+      
+      storeConfigAndScripts();
+
+      chrome.storage.local.set({ initialized: true }, () => {
+        console.log('Storage initialized for the first time.');
+      });
+    } else {
+      console.log('Storage already initialized.');
+    }
+  });
+  loadConfig();
+}
+
+async function storeConfigAndScripts() {
+  try {
+    // Fetch the config.json
+    const configResponse = await fetch(chrome.runtime.getURL('dataBase/config.json'));
+    if (!configResponse.ok) {
+      throw new Error(`Failed to fetch config.json: ${configResponse.statusText}`);
+    }
+    const config = await configResponse.json();
+
+    // Fetch the script.json
+    const scriptResponse = await fetch(chrome.runtime.getURL('dataBase/automationScriptsDb.json'));
+    if (!scriptResponse.ok) {
+      throw new Error(`Failed to fetch script.json: ${scriptResponse.statusText}`);
+    }
+    const scripts = await scriptResponse.json();
+
+    // Store config and scripts in chrome.storage.local
+    chrome.storage.local.set({ config, scripts }, (result) => {
+      console.log('Config and scripts stored successfully.', result);
+    });
+    
+  } catch (error) {
+    console.error('Error storing config and scripts:', error);
+  }
+}
+
+chrome.runtime.onInstalled.addListener(() => {
+  initializeStorage();
+});
 
 //############################# Message Center ####################################
 
@@ -29,6 +75,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       });
 
       return true; // Keep the message channel open for async operations
+    
+      case "config":
+      chrome.storage.local.get(['config'], function(response) {
+        sendResponse(response);
+      });
+      return true;
 
     case config.actions.automation:
       automationRunScript(request.Option);
