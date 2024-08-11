@@ -275,16 +275,53 @@ const myFilters = {
   },
 };
 
-function newButton(idName, _textContent, onClickFunction) {
-  const newButton = document.createElement("button");
-  newButton.id = idName;
-  newButton.textContent = _textContent;
-  newButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    onClickFunction();
-  });
-  document.getElementById("informacoesProcessuais").appendChild(newButton);
-}
+
+//TODO:
+// Inicializer at refresh to check Filter building
+// send a menssage to worker server to get the filterFlagValue
+// if true, build Filter (Object: constructor ?)
+
+// Move the Myfilters to chrome storage;
+// get data from the worker server
+
+// Update function to build and destroy (delete) Filter
+
+//############################# Setup Center ####################################
+
+
+
+
+//############################# Message Center ####################################
+
+chrome.runtime.onMessage.addListener(async function (
+  request,
+  sender,
+  sendResponse
+) {
+  switch (request.action) {
+    case "filterUpdatetrue":
+      //main();
+      console.log("message received by filter");
+      break;
+    default:
+      console.error("Unknown action:", request.action);
+      sendResponse(undefined);
+  }
+});
+
+
+//############################# Building Center ####################################
+
+// function newButton(idName, _textContent, onClickFunction) {
+//   const newButton = document.createElement("button");
+//   newButton.id = idName;
+//   newButton.textContent = _textContent;
+//   newButton.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     onClickFunction();
+//   });
+//   document.getElementById("informacoesProcessuais").appendChild(newButton);
+// }
 
 function newCheckbox(idName, _innerText) {
   const newInput = document.createElement("input");
@@ -310,6 +347,23 @@ async function checkAll(checkbox) {
     });
   });
 }
+
+function addEvent(checkbox) {
+  checkbox.addEventListener("change", () => {
+    searchFor(checkbox);
+  });
+}
+async function filtersTitle() {
+  const filtersTitle = document.createElement("b");
+  filtersTitle.innerText = `${emoji.lightning}Filtros Personalizados:`;
+  filtersTitle.title = `${emoji.alertMark}Atenção${emoji.alertMark}\nEstes filtros não fazem parte originalmente do Projudi, foram inseridos pela Extensão do Chrome chamada Proudji - Filtros Personalizados.`;
+  document.getElementById("aac1").appendChild(filtersTitle);
+  document.getElementById("aac1").appendChild(document.createElement("span"));
+  return;
+}
+
+
+//############################# Processing Center ####################################
 
 function changeBackgroundColor(color, _inputId) {
   Array.from(document.getElementsByClassName("masterBlockSubInfoHorz")).forEach(
@@ -366,6 +420,25 @@ async function checkCitacaoMandado(checkbox, row, type, isOddRow) {
   return false;
 }
 
+//TODO: implement Try/Catch in this function
+async function checkPendencias() {
+  pendencia = document.getElementById("quadroPendencias");
+  if (pendencia.innerText.toLocaleLowerCase().includes("suspensão")) {
+    pendencia.style.color = "red";
+    pendencia.style.fontWeight = "bold";
+    //alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.ice} Processo Suspenso`);
+  } else if (
+    pendencia.innerText.toLocaleLowerCase().includes("hasta") ||
+    pendencia.innerText.toLocaleLowerCase().includes("leilão")
+  ) {
+    pendencia.style.color = "red";
+    pendencia.style.fontWeight = "bold";
+
+    //       alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.hammer} Leilão Designado \n\nConfira as datas em:
+    // https://docs.google.com/spreadsheets/d/1L8QdCiRvhWyDBfe2xtcVJFcK_zA1NLc14_wjUvWlwjc/edit?usp=sharing`);
+  }
+}
+
 // TODO - rewrite this function
 function clickIcon(row) {
   // if (row.querySelector("b").innerText.includes("Realces")) {
@@ -379,6 +452,9 @@ function clickIcon(row) {
   }
   return true;
 }
+
+
+//############################# Search Engine Center ####################################
 
 async function searchFor(checkbox) {
   const filter = myFilters[checkbox.id];
@@ -438,39 +514,8 @@ async function searchFor(checkbox) {
   return true;
 }
 
-function addEvent(checkbox) {
-  checkbox.addEventListener("change", () => {
-    searchFor(checkbox);
-  });
-}
-async function filtersTitle() {
-  const filtersTitle = document.createElement("b");
-  filtersTitle.innerText = `${emoji.lightning}Filtros Personalizados:`;
-  filtersTitle.title = `${emoji.alertMark}Atenção${emoji.alertMark}\nEstes filtros não fazem parte originalmente do Projudi, foram inseridos pela Extensão do Chrome chamada Proudji - Filtros Personalizados.`;
-  document.getElementById("aac1").appendChild(filtersTitle);
-  document.getElementById("aac1").appendChild(document.createElement("span"));
-  return;
-}
 
-//TODO: implement Try in this function
-async function checkPendencias() {
-  pendencia = document.getElementById("quadroPendencias");
-  if (pendencia.innerText.toLocaleLowerCase().includes("suspensão")) {
-    pendencia.style.color = "red";
-    pendencia.style.fontWeight = "bold";
-    //alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.ice} Processo Suspenso`);
-  } else if (
-    pendencia.innerText.toLocaleLowerCase().includes("hasta") ||
-    pendencia.innerText.toLocaleLowerCase().includes("leilão")
-  ) {
-    pendencia.style.color = "red";
-    pendencia.style.fontWeight = "bold";
-
-    //       alert(`${emoji.alertMark}Atenção${emoji.alertMark}\n${emoji.hammer} Leilão Designado \n\nConfira as datas em:
-    // https://docs.google.com/spreadsheets/d/1L8QdCiRvhWyDBfe2xtcVJFcK_zA1NLc14_wjUvWlwjc/edit?usp=sharing`);
-  }
-}
-
+//############################# Management Center ####################################
 
 async function main() {
   chrome.storage.local.get(['filter'], async function(result) {
@@ -495,21 +540,3 @@ async function main() {
 }
 
 main();
-
-chrome.runtime.onMessage.addListener(async function (
-  request,
-  sender,
-  sendResponse
-) {
-  console.log("resquest: ", request)
-  switch (request.action) {
-    case "filterUpdate":
-      //main();
-      console.log("message received by filter");
-      break;
-    default:
-      // Handle unknown action
-      console.error("Unknown action:", request.action);
-      sendResponse(undefined);
-  }
-});

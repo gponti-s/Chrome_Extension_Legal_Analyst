@@ -63,7 +63,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     case "filterUpdate":
       chrome.storage.local.get(['filter'], function(result) {
         chrome.storage.local.set({ filter: !result.filter }, async function() {
-          sendMessageToContentScript(request.action, null, null);
+          sendMessageToContentScript(request.action + !result.filter, null, null);
           sendResponse(!result.filter);
       });
       });
