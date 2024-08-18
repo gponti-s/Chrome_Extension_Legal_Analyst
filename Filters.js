@@ -111,7 +111,7 @@ const myFilters = {
       },
       exclusao: {
         searchFor: [],
-        searchForBold: ["OFÍCIO SERASAJUD (EXCLUSÃO)"],
+        searchForBold: ["OFÍCIO SERASAJUD (EXCLUSÃO)", "EXPEDIÇÃO DE OFÍCIO SERAJUD (EXCLUSÃO)"],
         color: "#f78dd8",
         flag: false,
         clickOn: false,
@@ -455,6 +455,23 @@ function clickIcon(row) {
 
 
 //############################# Search Engine Center ####################################
+
+function searchBoldText(_innerText, color){
+  let result = false;
+  // TODO: need to check the iframe
+  let rows = document.querySelectorAll('table.resultTable > tbody > tr');
+  
+  rows.forEach((row) => {
+      let tds = row.querySelectorAll('td > b');  
+      let found = Array.from(tds).filter(el => el.innerText.toLocaleLowerCase() === _innerText.toLocaleLowerCase());
+      
+      if(found.length > 0) {
+          row.style.backgroundColor = color;
+          result = true;
+      }
+  });
+  return result;  
+}
 
 async function searchFor(checkbox) {
   const filter = myFilters[checkbox.id];

@@ -1,10 +1,12 @@
 //############################# Setup Center ####################################
 
+
 let config = {};
 
 async function loadConfig() {
   config = chrome.storage.local.get(['config'], (result)=>{
     config = result.config;
+    console.log("Worker - Config", config);
   });
 }
 
@@ -59,50 +61,49 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  switch (request.action) {
-    case "filterUpdate":
-      chrome.storage.local.get(['filter'], function(result) {
-        chrome.storage.local.set({ filter: !result.filter }, async function() {
-          sendMessageToContentScript(request.action + !result.filter, null, null);
-          sendResponse(!result.filter);
-      });
-      });
-      return true; 
-
-    case "filterValue":
-      chrome.storage.local.get(['filter'], function(response) {
-        sendResponse(response);
-      });
-
-      return true; // Keep the message channel open for async operations
-    
-      case "config":
-      chrome.storage.local.get(['config'], function(response) {
-        sendResponse(response);
-      });
-      return true;
-
-    case config.actions.automation:
-      automationRunScript(request.Option);
-      sendResponse(true);
-      break;
-
-    case config.actions.fetchAutomationButtons:
-      fetchAutomationData()
-        .then((data) => {
-          sendResponse(data); // Send the fetched data
-        })
-        .catch((error) => {
-          sendResponse({ error: error.message });
+  config = chrome.storage.local.get(['config'], (result)=>{
+    config = result.config;
+    console.log("Worker - Config", config);
+    switch (request.action) {
+      case "filterUpdate":
+        chrome.storage.local.get(['filter'], function(result) {
+          chrome.storage.local.set({ filter: !result.filter }, async function() {
+            sendMessageToContentScript(request.action + !result.filter, null, null);
+            sendResponse(!result.filter);
         });
-
-      return true; // Indicate that sendResponse will be called asynchronously
-
-    default:
-      console.warn("Unhandled action:", request.action);
-      sendResponse({ error: "Unknown action" });
-      break;
-  }
+        });
+        return true; 
+      case "filterValue":
+        chrome.storage.local.get(['filter'], function(response) {
+          sendResponse(response);
+        });
+  
+        return true; // Keep the message channel open for async operation
+  
+      case config.actions.automation:
+        automationRunScript(request.Option, config);
+        sendResponse(true);
+        break;
+  
+      case config.actions.fetchAutomationButtons:
+        fetchAutomationData()
+          .then((data) => {
+            sendResponse(data); // Send the fetched data
+          })
+          .catch((error) => {
+            sendResponse({ error: error.message });
+          });
+  
+        return true; // Indicate that sendResponse will be called asynchronously
+  
+      default:
+        console.warn("Unhandled action:", request.action);
+        sendResponse({ error: "Unknown action" });
+        break;
+    }
+  });
+  return true;
+  
 });
 
 
@@ -137,8 +138,8 @@ sendMessageToContentScript("main", null, null);
 
 //############################# Fetch Center ####################################
 
-async function automationRunScript(_key) {
-  fetchAutomationData().then(async (data) => {
+async function automationRunScript(_key, config) {
+  fetchAutomationData(config).then(async (data) => {
     if (data[_key] && data[_key].script) {
       // Check if data[_key] and data[_key].script are defined
       const scriptArray = data[_key].script;
@@ -158,7 +159,7 @@ async function automationRunScript(_key) {
   });
 }
 
-async function fetchAutomationData() {
+async function fetchAutomationData(config) {
   try {
     const response = await fetch(config.api.databaseUrlAutomation);
     const data = await response.json();
