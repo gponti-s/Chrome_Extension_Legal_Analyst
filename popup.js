@@ -1,22 +1,28 @@
 //############################# Setup Center ####################################
 
-// // Function to ensure the service worker is active before sending a message
-// async function ensureServiceWorkerIsReady() {
-//   const registration = await navigator.serviceWorker.ready;
-//   return registration.active;
-// }
+async function fetchDataFromStorage(_key) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(_key, (result) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
 
-// Use this function before sending a message
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-      chrome.storage.local.get("filter").then((response) => {
-        filterIconUpdate(response.filter);
-  });
-    createButtons(); // Move createButtons inside the callback
+    await filterIconUpdate();
+    await initializeButtons();
+    test()
   } catch (error) {
-    console.error("Error loading configuration:", error);
+    console.error("Error during DOMContentLoaded execution:", error);
   }
 });
+
 
 //############################# Message Center ####################################
 
@@ -60,53 +66,62 @@ document.getElementById("gridIcon").addEventListener("click", function () {
 
 // ------------- Filter Icon -------------
 document.getElementById("filterIcon").addEventListener("click", async () => {
-  let flag = await sendMessageToServiceWorker("filterUpdate", null, null);
-  console.log("Popup - the icon was clicked ", flag)
-  filterIconUpdate(flag);
+  _ = await sendMessageToServiceWorker("filterUpdate", null, null);
+  await filterIconUpdate();
 });
 
-async function filterIconUpdate(filterFlag) {
-    const icon = document.getElementById("filterIcon");
-    icon.className = filterFlag
-      ? "bi bi-funnel-fill navegationIcons"
-      : "bi bi-funnel navegationIcons";
+async function filterIconUpdate() {
+  const response = await fetchDataFromStorage("filter");
+  const icon = document.getElementById("filterIcon");
+  icon.className = response.filter
+    ? "bi bi-funnel-fill navegationIcons"
+    : "bi bi-funnel navegationIcons";
 }
 
 //############################# Dinamic Buttons ####################################
 
-function createButtons() {
-  chrome.storage.local
-    .get(["scripts", "config"])
-    .then((response) => {
-      // Check if response.scripts is valid
-      if (response.scripts && typeof response.scripts === "object") {
-        const sortedEntries = Object.entries(response.scripts).sort((a, b) => {
-          return a[1].textContent.localeCompare(b[1].textContent);
-        });
-        // Create buttons
-        sortedEntries.forEach(function ([key, value]) {
-          const newButton = document.createElement("button");
-          newButton.type = "button";
-          newButton.className = response.config.style.buttonClassName; // Add btn-spacing class
-          newButton.id = key;
-          newButton.textContent = value.textContent;
-          document.getElementById(value.divIdToAppend).appendChild(newButton);
-          newButton.addEventListener("click", async () => {
-            sendMessageToServiceWorker(
-              response.config.actions.automation,
-              null,
-              key
-            );
-          });
-        });
-      } else {
-        console.error(
-          response.config.errorMessages.popupMessageresponse,
-          response.scripts
-        );
-      }
-    })
-    .catch((error) => {
-      console.error(response.config.errorMessages.popupMessageresponse, error);
+function NewAutomationButton(_className, _key, _textContent) {
+  const newButton = document.createElement("button");
+  newButton.type = "button";
+  newButton.className = _className; // Add btn-spacing class
+  newButton.id = _key;
+  newButton.textContent = _textContent;
+  return newButton;
+}
+
+function createButtons(response) {
+  if (response.scripts && typeof response.scripts === "object") {
+    const sortedEntries = Object.entries(response.scripts).sort((a, b) => {
+      return a[1].textContent.localeCompare(b[1].textContent);
     });
+    sortedEntries.forEach(function ([key, value]) {
+      const newButton = NewAutomationButton(
+        response.config.style.buttonClassName,
+        key,
+        value.textContent
+      );
+      document.getElementById(value.divIdToAppend).appendChild(newButton);
+      newButton.addEventListener("click", async () => {
+        sendMessageToServiceWorker(
+          response.config.actions.automation,
+          null,
+          key
+        );
+      });
+    });
+  } else {
+    console.error(
+      response.config.errorMessages.popupMessageresponse,
+      response.scripts
+    );
+  }
+}
+
+async function initializeButtons() {
+  try {
+    const response = await fetchDataFromStorage(["scripts", "config"]);
+    createButtons(response);
+  } catch (error) {
+    console.error("Error fetching data or creating buttons:", error);
+  }
 }

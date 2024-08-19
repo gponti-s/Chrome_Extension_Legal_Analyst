@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       case config.actions.automation:
         automationRunScript(request.Option, config);
         sendResponse(true);
-        break;
+        return true;
   
       case config.actions.fetchAutomationButtons:
         fetchAutomationData()
