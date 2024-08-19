@@ -1,0 +1,13 @@
+{
+    "debloqueioCnib":{
+        "assinadoPorJuiz": false,
+        "exequente": false,
+        "executado": false,
+        "selecionarCumprimento": "DESBLOQUEIO CNIB",
+        "retorno": false,
+        "prazoRetorno": null,
+        "naturezaMandado": null,
+        "prazoOficial": null,
+        "codCustasMandado": null
+    }
+}

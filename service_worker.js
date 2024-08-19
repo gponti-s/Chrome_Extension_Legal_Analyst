@@ -13,7 +13,8 @@ async function loadConfig() {
 async function initializeStorage() {
   // Check if initialization has already been done
   chrome.storage.local.get(['initialized'], (result) => {
-    if (!result.initialized) {
+    //TODO: change result.initialized to !result.initialized
+    if (result.initialized) {
       
       storeConfigAndScripts();
 
@@ -42,9 +43,16 @@ async function storeConfigAndScripts() {
       throw new Error(`Failed to fetch script.json: ${scriptResponse.statusText}`);
     }
     const scripts = await scriptResponse.json();
+    
+    // Fetch the script.json
+    const automationButtonsResponse = await fetch(chrome.runtime.getURL('dataBase/automationButtonsDb.json'));
+    if (!automationButtonsResponse.ok) {
+      throw new Error(`Failed to fetch script.json: ${automationButtonsResponse.statusText}`);
+    }
+    const automationButtons = await automationButtonsResponse.json();
 
     // Store config and scripts in chrome.storage.local
-    chrome.storage.local.set({ config, scripts }, (result) => {
+    chrome.storage.local.set({ config, scripts, automationButtons }, (result) => {
       console.log('Config and scripts stored successfully.', result);
     });
     

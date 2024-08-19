@@ -1,0 +1,34 @@
+{
+    "debloqueioCnib": {
+        "textContent": "Desbloq Cnib",
+        "automationClass": "ordenacao"
+    },
+    "openAllShowDetails": {
+        "textContent": "Abre/Fecha Detalhes +",
+        "automationClass": "analise"
+    },
+    "analiseJuntada": {
+        "textContent": "Dispensar Analise",
+        "automationClass": "analise"
+    },
+    "ordenacaoMadado": {
+        "textContent": "Mandado Int./30",
+        "automationClass": "ordenacao"
+    },
+    "ordenacaoEditalIntimacao": {
+        "textContent": "Edital Int. 30",
+        "automationClass": "ordenacao"
+    },
+    "ordenacaoOficioBaixaConstricao": {
+        "textContent": "Ofício Baixa",
+        "automationClass": "ordenacao"
+    },
+    "ordenacaoAlvara": {
+        "textContent": "Alvará",
+        "automationClass": "ordenacao"
+    },
+    "ordenacaoDesbloqueioRenajud": {
+        "textContent": "Desbloq Renajud",
+        "automationClass": "ordenacao"
+    }
+}

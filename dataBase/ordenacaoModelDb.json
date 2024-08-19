@@ -1,0 +1,122 @@
+{
+    "ordenarCumprimento": 
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "a",
+        "innerText": "Ordenar Cumprimentos",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "assinadoPorJuiz":
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#rowAssinadoPorJuiz > td:nth-child(2) > input[type=radio]:nth-child(1)",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "selecionarCumprimento":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codTipoCumprimentoCartorio",
+        "innerText": "",
+        "input": null,
+        "timeOut": 3000,
+        "color": null
+    },
+    "retornoNegativo":
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#rowPrazos > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > input[type=radio]:nth-child(2)",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "retornoPositivo":
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#rowPrazos > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > input[type=radio]:nth-child(1)",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "prazoRetorno":
+    {
+        "command": "input",
+        "selectorType": "id",
+        "identifier": "prazoCumprimento",
+        "innerText": null,
+        "input": "",
+        "timeOut": null,
+        "color": null
+    },
+    "naturezaMandado":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codNaturezaMandado",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "prazoOficial":
+    {
+        "command": "input",
+        "selectorType": "id",
+        "identifier": "prazoOficialJustica",
+        "innerText": null,
+        "input": "",
+        "timeOut": null,
+        "color": null
+    },
+    "classificacaoMandado":
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#rowClassificacaoMandado > td:nth-child(2) > input[type=radio]:nth-child(2)",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "codCustasMandado":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codCustasMandado",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "mandadoDesentranhado":
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "mandadoDesentranhado",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "cumprimentoVinculado":
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "cumprimentoVinculado",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    }
+}

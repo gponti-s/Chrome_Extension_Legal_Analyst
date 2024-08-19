@@ -123,7 +123,7 @@ const myFilters = {
     types: {
       busca: {
         searchFor: [],
-        searchForBold: ["EXPEDIÇÃO DE BUSCA CNIB"],
+        searchForBold: ["EXPEDIÇÃO DE BUSCA CNIB", "EXPEDIÇÃO DE BLOQUEIO CNIB"],
         color: "#FFFF8F",
         flag: false,
         clickOn: true,
@@ -135,7 +135,7 @@ const myFilters = {
     types: {
       bloqueio: {
         searchFor: [],
-        searchForBold: ["EXPEDIÇÃO DE BLOQUEIO RENAJUD"],
+        searchForBold: ["EXPEDIÇÃO DE BLOQUEIO RENAJUD", "JUNTADA DE RESTRIÇÃO REALIZADA NO RENAJUD"],
         color: "#a17a74",
         flag: false,
         clickOn: true,
@@ -546,7 +546,7 @@ async function main() {
     });
     const newCheckAll = newCheckbox("checkAll", "TODOS")
     checkAll(newCheckAll);
-    //_ = await checkPendencias();
+    _ = await checkPendencias();
     //TODO: temporary => to keep the checkAll checked
     newCheckAll.click();
   } else{

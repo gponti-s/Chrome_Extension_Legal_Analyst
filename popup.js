@@ -1,6 +1,6 @@
 //############################# Setup Center ####################################
 
-async function fetchDataFromStorage(_key) {
+async function getDataFromStorage(_key) {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get(_key, (result) => {
       if (chrome.runtime.lastError) {
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     await filterIconUpdate();
     await initializeButtons();
-    test()
   } catch (error) {
     console.error("Error during DOMContentLoaded execution:", error);
   }
@@ -71,7 +70,7 @@ document.getElementById("filterIcon").addEventListener("click", async () => {
 });
 
 async function filterIconUpdate() {
-  const response = await fetchDataFromStorage("filter");
+  const response = await getDataFromStorage("filter");
   const icon = document.getElementById("filterIcon");
   icon.className = response.filter
     ? "bi bi-funnel-fill navegationIcons"
@@ -90,8 +89,8 @@ function NewAutomationButton(_className, _key, _textContent) {
 }
 
 function createButtons(response) {
-  if (response.scripts && typeof response.scripts === "object") {
-    const sortedEntries = Object.entries(response.scripts).sort((a, b) => {
+  if (response.automationButtons && typeof response.automationButtons === "object") {
+    const sortedEntries = Object.entries(response.automationButtons).sort((a, b) => {
       return a[1].textContent.localeCompare(b[1].textContent);
     });
     sortedEntries.forEach(function ([key, value]) {
@@ -100,7 +99,7 @@ function createButtons(response) {
         key,
         value.textContent
       );
-      document.getElementById(value.divIdToAppend).appendChild(newButton);
+      document.getElementById(value.automationClass).appendChild(newButton);
       newButton.addEventListener("click", async () => {
         sendMessageToServiceWorker(
           response.config.actions.automation,
@@ -112,14 +111,15 @@ function createButtons(response) {
   } else {
     console.error(
       response.config.errorMessages.popupMessageresponse,
-      response.scripts
+      response.automationButtons
     );
   }
 }
 
 async function initializeButtons() {
   try {
-    const response = await fetchDataFromStorage(["scripts", "config"]);
+    const response = await getDataFromStorage(["config", "automationButtons"]);
+    console.log(response.automationButtons);
     createButtons(response);
   } catch (error) {
     console.error("Error fetching data or creating buttons:", error);

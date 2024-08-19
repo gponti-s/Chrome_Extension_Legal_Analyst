@@ -113,7 +113,6 @@ async function automation(_object) {
     return undefined;
   }
   let elements = await selectElement(_object.selectorType, _object.identifier);
-  //console.log("Eelements form automation.", elements);
   switch (_object.command) {
     case "click":
       return await clickElement(_object, elements);
@@ -126,7 +125,6 @@ async function automation(_object) {
     case "style":
       return await style(_object, elements);
     default:
-      // Handle unknown action
       console.error("Unknown action:", request.action);
       sendResponse(undefined);
   }
@@ -134,7 +132,6 @@ async function automation(_object) {
 }
 
 async function clickElement(_object, elements) {
-  //console.log("From Click", elements);
   let elementClicked = false;
 
   if (_object.innerText) {
@@ -163,13 +160,11 @@ async function delay(_object) {
 }
 
 async function selectOption(_object, elements) {
-  // Check if elements array is null or empty
   if (!elements || elements.length === 0) {
     console.error("No elements found to select");
     return;
   }
 
-  // Iterate over each select element in the array
   elements.forEach((selectElement) => {
     if (selectElement) {
       let options = selectElement.options;
@@ -190,7 +185,6 @@ async function selectOption(_object, elements) {
 }
 
 async function input(_object, elements) {
-  // Check if elements array is null or empty
   if (!elements || elements.length === 0) {
     console.error("No elements found to input value");
     return;
@@ -199,16 +193,14 @@ async function input(_object, elements) {
   // Set the value of the first non-null element
   for (let i = 0; i < elements.length; i++) {
     if (elements[i]) {
-      // Check if element is not null
       elements[i].value = _object.input;
-      return; // Exit the loop after setting the value
+      return; 
     }
   }
   console.error("All elements in elements array are null");
 }
 
 async function style(_object, elements) {
-  // Check if elements array is null or empty
   if (!elements || elements.length === 0) {
     console.error("No elements found to select");
     return;
