@@ -9,6 +9,26 @@
         "timeOut": null,
         "color": null
     },
+    "selecionarExequente": 
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "selecionarExecutado": 
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "XXXXXX",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
     "assinadoPorJuiz":
     {
         "command": "click",

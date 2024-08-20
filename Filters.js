@@ -546,7 +546,7 @@ async function main() {
     });
     const newCheckAll = newCheckbox("checkAll", "TODOS")
     checkAll(newCheckAll);
-    _ = await checkPendencias();
+    //_ = await checkPendencias();
     //TODO: temporary => to keep the checkAll checked
     newCheckAll.click();
   } else{

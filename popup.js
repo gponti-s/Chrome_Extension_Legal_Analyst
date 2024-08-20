@@ -119,7 +119,6 @@ function createButtons(response) {
 async function initializeButtons() {
   try {
     const response = await getDataFromStorage(["config", "automationButtons"]);
-    console.log(response.automationButtons);
     createButtons(response);
   } catch (error) {
     console.error("Error fetching data or creating buttons:", error);

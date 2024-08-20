@@ -1,10 +1,9 @@
 //############################# Setup Center ####################################
 
-
 let config = {};
 
 async function loadConfig() {
-  config = chrome.storage.local.get(['config'], (result)=>{
+  config = chrome.storage.local.get(["config"], (result) => {
     config = result.config;
     console.log("Worker - Config", config);
   });
@@ -12,17 +11,16 @@ async function loadConfig() {
 
 async function initializeStorage() {
   // Check if initialization has already been done
-  chrome.storage.local.get(['initialized'], (result) => {
+  chrome.storage.local.get(["initialized"], (result) => {
     //TODO: change result.initialized to !result.initialized
     if (result.initialized) {
-      
       storeConfigAndScripts();
 
       chrome.storage.local.set({ initialized: true }, () => {
-        console.log('Storage initialized for the first time.');
+        console.log("Storage initialized for the first time.");
       });
     } else {
-      console.log('Storage already initialized.');
+      console.log("Storage already initialized.");
     }
   });
   loadConfig();
@@ -31,33 +29,69 @@ async function initializeStorage() {
 async function storeConfigAndScripts() {
   try {
     // Fetch the config.json
-    const configResponse = await fetch(chrome.runtime.getURL('dataBase/config.json'));
+    const configResponse = await fetch(
+      chrome.runtime.getURL("dataBase/config.json")
+    );
     if (!configResponse.ok) {
-      throw new Error(`Failed to fetch config.json: ${configResponse.statusText}`);
+      throw new Error(
+        `Failed to fetch config.json: ${configResponse.statusText}`
+      );
     }
     const config = await configResponse.json();
 
     // Fetch the script.json
-    const scriptResponse = await fetch(chrome.runtime.getURL('dataBase/automationScriptsDb.json'));
+    const scriptResponse = await fetch(
+      chrome.runtime.getURL("dataBase/automationScriptsDb.json")
+    );
     if (!scriptResponse.ok) {
-      throw new Error(`Failed to fetch script.json: ${scriptResponse.statusText}`);
+      throw new Error(
+        `Failed to fetch script.json: ${scriptResponse.statusText}`
+      );
     }
     const scripts = await scriptResponse.json();
-    
-    // Fetch the script.json
-    const automationButtonsResponse = await fetch(chrome.runtime.getURL('dataBase/automationButtonsDb.json'));
+
+    // Fetch the automationButtons.json
+    const automationButtonsResponse = await fetch(
+      chrome.runtime.getURL("dataBase/automationButtonsDb.json")
+    );
     if (!automationButtonsResponse.ok) {
-      throw new Error(`Failed to fetch script.json: ${automationButtonsResponse.statusText}`);
+      throw new Error(
+        `Failed to fetch script.json: ${automationButtonsResponse.statusText}`
+      );
     }
     const automationButtons = await automationButtonsResponse.json();
 
+    // Fetch the automationModel.json
+    const ordenacaoModelResponse = await fetch(
+      chrome.runtime.getURL("dataBase/ordenacaoModelDb.json")
+    );
+    if (!ordenacaoModelResponse.ok) {
+      throw new Error(
+        `Failed to fetch script.json: ${ordenacaoModelResponse.statusText}`
+      );
+    }
+    const ordenacaoModel = await ordenacaoModelResponse.json();
+
+    // Fetch the automationModel.json
+    const ordenacaoScriptsResponse = await fetch(
+      chrome.runtime.getURL("dataBase/ordenacaoScriptsDb.json")
+    );
+    if (!ordenacaoScriptsResponse.ok) {
+      throw new Error(
+        `Failed to fetch script.json: ${ordenacaoScriptsResponse.statusText}`
+      );
+    }
+    const ordenacaoScripts = await ordenacaoScriptsResponse.json();
+
     // Store config and scripts in chrome.storage.local
-    chrome.storage.local.set({ config, scripts, automationButtons }, (result) => {
-      console.log('Config and scripts stored successfully.', result);
-    });
-    
+    chrome.storage.local.set(
+      { config, scripts, automationButtons, ordenacaoModel, ordenacaoScripts },
+      (result) => {
+        console.log("Config and scripts stored successfully.", result);
+      }
+    );
   } catch (error) {
-    console.error('Error storing config and scripts:', error);
+    console.error("Error storing config and scripts:", error);
   }
 }
 
@@ -69,30 +103,36 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Set up the onMessage listener
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  config = chrome.storage.local.get(['config'], (result)=>{
+  config = chrome.storage.local.get(["config"], (result) => {
     config = result.config;
-    console.log("Worker - Config", config);
     switch (request.action) {
       case "filterUpdate":
-        chrome.storage.local.get(['filter'], function(result) {
-          chrome.storage.local.set({ filter: !result.filter }, async function() {
-            sendMessageToContentScript(request.action + !result.filter, null, null);
-            sendResponse(!result.filter);
+        chrome.storage.local.get(["filter"], function (result) {
+          chrome.storage.local.set(
+            { filter: !result.filter },
+            async function () {
+              sendMessageToContentScript(
+                request.action + !result.filter,
+                null,
+                null
+              );
+              sendResponse(!result.filter);
+            }
+          );
         });
-        });
-        return true; 
+        return true;
       case "filterValue":
-        chrome.storage.local.get(['filter'], function(response) {
+        chrome.storage.local.get(["filter"], function (response) {
           sendResponse(response);
         });
-  
+
         return true; // Keep the message channel open for async operation
-  
+
       case config.actions.automation:
         automationRunScript(request.Option, config);
         sendResponse(true);
         return true;
-  
+
       case config.actions.fetchAutomationButtons:
         fetchAutomationData()
           .then((data) => {
@@ -101,9 +141,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           .catch((error) => {
             sendResponse({ error: error.message });
           });
-  
+
         return true; // Indicate that sendResponse will be called asynchronously
-  
+
       default:
         console.warn("Unhandled action:", request.action);
         sendResponse({ error: "Unknown action" });
@@ -111,9 +151,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
   });
   return true;
-  
 });
-
 
 // send message to scripts
 async function sendMessageToContentScript(
@@ -155,6 +193,7 @@ async function automationRunScript(_key, config) {
         await new Promise((resolve) =>
           setTimeout(resolve, scriptArray[i].timeOut || 0)
         );
+        console.log("scriptArray[i]: ",scriptArray[i])
         sendMessageToContentScript(
           config.actions.automation,
           null,
@@ -177,3 +216,78 @@ async function fetchAutomationData(config) {
     throw new Error(config.errorMessages.fetchingAutomation);
   }
 }
+
+// --------------------------------- Test ------------------------------------------------
+async function getDataFromStorage(_key) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(_key, (result) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
+
+async function automationRunScript2(_key, config) {
+  let buttons = await getDataFromStorage("automationButtons");
+
+  let script = await getDataFromStorage(
+    `${buttons.automationButtons[_key].automationClass}Scripts`
+  );
+
+  let model = await getDataFromStorage(
+    `${buttons.automationButtons[_key].automationClass}Model`
+  );
+
+  if (model && script) {
+    const automationClass = `${buttons.automationButtons[_key].automationClass}Model`;
+    const modelObj = model[automationClass];
+    const scriptObj = script[`${buttons.automationButtons[_key].automationClass}Scripts`][_key]
+
+    // Define the order in which you want to process the keys
+    const orderedKeys = [
+      "ordenarCumprimento",
+      "assinadoPorJuiz",
+      "selecionarExequente",
+      "selecionarExecutado",
+      "selecionarCumprimento",
+      "retornoNegativo",
+      "retornoPositivo",
+      "prazoRetorno",
+      "naturezaMandado",
+      "prazoOficial",
+      "classificacaoMandado",
+      "codCustasMandado",
+      "mandadoDesentranhado",
+      "cumprimentoVinculado"
+    ];
+
+
+    // change orderedKeys for scriptObj
+    for (const key of orderedKeys) {
+      const value = modelObj[key];
+      console.log(scriptObj)
+      if (scriptObj[key] !== false && scriptObj[key] !== null) {
+        if (key === "selecionarCumprimento") {
+          value.innerText = scriptObj.selecionarCumprimento;
+        }
+
+        await new Promise((resolve) =>
+          setTimeout(resolve, value.timeOut || 0)
+        );
+
+        console.log("automationRunScript2 - value:", value);
+        sendMessageToContentScript(
+          config.actions.automation,
+          null,
+          value
+        );
+      }
+    }
+  }
+}
+
+
+
