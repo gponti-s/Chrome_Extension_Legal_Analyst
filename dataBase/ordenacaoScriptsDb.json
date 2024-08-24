@@ -1,10 +1,11 @@
 {
-    "desbloqueioCnib":{
+    "CnibDesbloqueio":{
         "ordenarCumprimento": true,
+        "selecionarCumprimento": "DESBLOQUEIO CNIB",
         "assinadoPorJuiz": false,
         "selecionarExequente": false,
         "selecionarExecutado": false,
-        "selecionarCumprimento": "DESBLOQUEIO CNIB",
+        "urgente": false,
         "retornoNegativo": true,
         "retornoPositivo": false,
         "prazoRetorno": null,
@@ -14,5 +15,56 @@
         "codCustasMandado": null,
         "mandadoDesentranhado": false,
         "cumprimentoVinculado": false
+    },
+    "sisbajudDesbloqueio":{
+        "ordenarCumprimento": true,
+        "selecionarCumprimento": "DESBLOQUEIO SISBAJUD",
+        "assinadoPorJuiz": false,
+        "selecionarExequente": false,
+        "selecionarExecutado": false,
+        "urgente": true,
+        "retornoNegativo": true,
+        "retornoPositivo": false,
+        "prazoRetorno": null,
+        "naturezaMandado": null,
+        "prazoOficial": null,
+        "classificacaoMandado": false,
+        "codCustasMandado": null,
+        "mandadoDesentranhado": false,
+        "cumprimentoVinculado": false
+    },
+    "sisbajudBloqueio":{
+        "ordenarCumprimento": true,
+        "selecionarCumprimento": "BLOQUEIO SISBAJUD",
+        "assinadoPorJuiz": false,
+        "selecionarExequente": false,
+        "selecionarExecutado": true,
+        "urgente": false,
+        "retornoNegativo": true,
+        "retornoPositivo": false,
+        "prazoRetorno": null,
+        "naturezaMandado": null,
+        "prazoOficial": null,
+        "classificacaoMandado": false,
+        "codCustasMandado": null,
+        "mandadoDesentranhado": false,
+        "cumprimentoVinculado": false
+    },
+    "mandadoIntimacao":{
+        "ordenarCumprimento": true,
+        "selecionarCumprimento": "MANDADO",
+        "assinadoPorJuiz": false,
+        "selecionarExequente": false,
+        "selecionarExecutado": true,
+        "urgente": false,
+        "retornoNegativo": false,
+        "retornoPositivo": true,
+        "prazoRetorno": "30",
+        "naturezaMandado": "Intimação da Penhora",
+        "prazoOficial": "15",
+        "classificacaoMandado": true,
+        "codCustasMandado": "Citação, intimação e notificação",
+        "mandadoDesentranhado": true,
+        "cumprimentoVinculado": true
     }
 }

@@ -9,24 +9,14 @@
         "timeOut": null,
         "color": null
     },
-    "selecionarExequente": 
+    "selecionarCumprimento":
     {
-        "command": "click",
-        "selectorType": "tag",
-        "identifier": "",
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codTipoCumprimentoCartorio",
         "innerText": "",
         "input": null,
-        "timeOut": null,
-        "color": null
-    },
-    "selecionarExecutado": 
-    {
-        "command": "click",
-        "selectorType": "tag",
-        "identifier": "XXXXXX",
-        "innerText": "",
-        "input": null,
-        "timeOut": null,
+        "timeOut": 3000,
         "color": null
     },
     "assinadoPorJuiz":
@@ -39,14 +29,33 @@
         "timeOut": null,
         "color": null
     },
-    "selecionarCumprimento":
+    "selecionarExequente": 
     {
-        "command": "select",
-        "selectorType": "id",
-        "identifier": "codTipoCumprimentoCartorio",
-        "innerText": "",
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#rowPartesMultiplas > td:nth-child(2) > input[type=checkbox]:nth-child(1)",
+        "innerText": null,
         "input": null,
-        "timeOut": 3000,
+        "timeOut": null,
+        "color": null
+    },
+    "selecionarExecutado": 
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "rowPartesMultiplas > td:nth-child(2) > input[type=checkbox]:nth-child(4)",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "urgente":{
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "#flagUrgente[value=true]",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
         "color": null
     },
     "retornoNegativo":

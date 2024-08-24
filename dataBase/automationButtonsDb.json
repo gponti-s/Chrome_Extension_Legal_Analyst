@@ -1,8 +1,4 @@
 {
-    "desbloqueioCnib": {
-        "textContent": "Desbloq Cnib",
-        "automationClass": "ordenacao"
-    },
     "openAllShowDetails": {
         "textContent": "Abre/Fecha Detalhes +",
         "automationClass": "analise"
@@ -11,7 +7,11 @@
         "textContent": "Dispensar Analise",
         "automationClass": "analise"
     },
-    "ordenacaoMadado": {
+    "CnibDesbloqueio": {
+        "textContent": "Desbloq Cnib",
+        "automationClass": "ordenacao"
+    },
+    "mandadoIntimacao": {
         "textContent": "Mandado Int./30",
         "automationClass": "ordenacao"
     },
@@ -29,6 +29,14 @@
     },
     "ordenacaoDesbloqueioRenajud": {
         "textContent": "Desbloq Renajud",
+        "automationClass": "ordenacao"
+    },
+    "sisbajudDesbloqueio": {
+        "textContent": "SisbaJud - Desbloq",
+        "automationClass": "ordenacao"
+    },
+    "sisbajudBloqueio": {
+        "textContent": "SisbaJud - Bloq",
         "automationClass": "ordenacao"
     }
 }

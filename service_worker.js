@@ -5,7 +5,6 @@ let config = {};
 async function loadConfig() {
   config = chrome.storage.local.get(["config"], (result) => {
     config = result.config;
-    console.log("Worker - Config", config);
   });
 }
 
@@ -129,7 +128,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return true; // Keep the message channel open for async operation
 
       case config.actions.automation:
-        automationRunScript(request.Option, config);
+        automationParsing(request.Option, config);
         sendResponse(true);
         return true;
 
@@ -193,7 +192,6 @@ async function automationRunScript(_key, config) {
         await new Promise((resolve) =>
           setTimeout(resolve, scriptArray[i].timeOut || 0)
         );
-        console.log("scriptArray[i]: ",scriptArray[i])
         sendMessageToContentScript(
           config.actions.automation,
           null,
@@ -230,61 +228,58 @@ async function getDataFromStorage(_key) {
   });
 }
 
-async function automationRunScript2(_key, config) {
-  let buttons = await getDataFromStorage("automationButtons");
+
+async function ordenacaoRunScript(_modelObj, _scriptObj, config){
+  const orderedKeys = config.mapping.ordenacaoModel
+  for (const key of orderedKeys) {
+    const value = _modelObj[key];
+    if (_scriptObj[key] !== false && _scriptObj[key] !== null) {
+      Object.values(config.mapping.ordenacaoModelEspecialCase).forEach(Element => {
+        if (key === Element){
+          value.innerText = _scriptObj[key];
+          value.input = _scriptObj[key];
+        }
+      })
+
+      await new Promise((resolve) =>
+        setTimeout(resolve, value.timeOut || 0)
+      );
+
+      sendMessageToContentScript(
+        config.actions.automation,
+        null,
+        value
+      );
+    }
+  }
+  return true;
+}
+
+async function automationParsing(_key, config) {
+  const buttons = await getDataFromStorage("automationButtons");
+  const automationClass = buttons.automationButtons[_key].automationClass;
 
   let script = await getDataFromStorage(
-    `${buttons.automationButtons[_key].automationClass}Scripts`
+    `${automationClass}Scripts`
   );
 
   let model = await getDataFromStorage(
-    `${buttons.automationButtons[_key].automationClass}Model`
+    `${automationClass}Model`
   );
 
   if (model && script) {
-    const automationClass = `${buttons.automationButtons[_key].automationClass}Model`;
-    const modelObj = model[automationClass];
-    const scriptObj = script[`${buttons.automationButtons[_key].automationClass}Scripts`][_key]
+    // const automationClassModel = `${automationClass}Model`;
+    // const modelObj = model[automationClassModel];
+    // const scriptObj = script[`${automationClass}Scripts`][_key]
 
-    // Define the order in which you want to process the keys
-    const orderedKeys = [
-      "ordenarCumprimento",
-      "assinadoPorJuiz",
-      "selecionarExequente",
-      "selecionarExecutado",
-      "selecionarCumprimento",
-      "retornoNegativo",
-      "retornoPositivo",
-      "prazoRetorno",
-      "naturezaMandado",
-      "prazoOficial",
-      "classificacaoMandado",
-      "codCustasMandado",
-      "mandadoDesentranhado",
-      "cumprimentoVinculado"
-    ];
-
-
-    // change orderedKeys for scriptObj
-    for (const key of orderedKeys) {
-      const value = modelObj[key];
-      console.log(scriptObj)
-      if (scriptObj[key] !== false && scriptObj[key] !== null) {
-        if (key === "selecionarCumprimento") {
-          value.innerText = scriptObj.selecionarCumprimento;
-        }
-
-        await new Promise((resolve) =>
-          setTimeout(resolve, value.timeOut || 0)
-        );
-
-        console.log("automationRunScript2 - value:", value);
-        sendMessageToContentScript(
-          config.actions.automation,
-          null,
-          value
-        );
-      }
+    switch (automationClass){
+      case "ordenacao":
+        const automationClassModel = `${automationClass}Model`;
+        const modelObj = model[automationClassModel];
+        const scriptObj = script[`${automationClass}Scripts`][_key]
+        return await ordenacaoRunScript(modelObj, scriptObj, config);
+      case "analise":
+        return await automationRunScript(_key, config)
     }
   }
 }

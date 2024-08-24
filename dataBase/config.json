@@ -6,6 +6,32 @@
     "style":{
       "buttonClassName": "btn btn-secondary btn-sm btn-spacing"
     },
+    "mapping": {
+      "ordenacaoModel" : [
+        "ordenarCumprimento",
+        "selecionarCumprimento",
+        "assinadoPorJuiz",
+        "selecionarExequente",
+        "selecionarExecutado",
+        "urgente",
+        "retornoNegativo",
+        "retornoPositivo",
+        "prazoRetorno",
+        "naturezaMandado",
+        "prazoOficial",
+        "classificacaoMandado",
+        "codCustasMandado",
+        "mandadoDesentranhado",
+        "cumprimentoVinculado"
+      ],
+      "ordenacaoModelEspecialCase": [
+        "selecionarCumprimento",
+        "naturezaMandado",
+        "codCustasMandado",
+        "prazoRetorno",
+        "prazoOficial"
+      ]
+    },
     "api": {
       "databaseUrlAutomation": "dataBase/automationScriptsDb.json"
     },

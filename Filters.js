@@ -265,7 +265,7 @@ const myFilters = {
     label: "Carta Precatória",
     types: {
       devolvido: {
-        searchFor: [],
+        searchFor: ["Análise de Retorno de Carta Eletrônica"],
         searchForBold: ["JUNTADA DE CARTA PRECATÓRIA", "JUNTADA DE DEVOLUÇÃO DE CARTA PRECATÓRIA"],
         color: "#ffdbbb",
         flag: false,
