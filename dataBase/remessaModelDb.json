@@ -1,0 +1,72 @@
+{
+    "realizarRemessa": 
+    {
+        "command": "click",
+        "selectorType": "tag",
+        "identifier": "a",
+        "innerText": "Realizar Remessa",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "tipoRemessaDistribuidor":
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "tipoRemessaDistribuidor",
+        "innerText": "",
+        "input": null,
+        "timeOut": 3000,
+        "color": null
+    },
+    "tipoRemessaEntidade":
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "tipoRemessaEntidade",
+        "innerText": "",
+        "input": null,
+        "timeOut": 3000,
+        "color": null
+    },
+    "finalidadeRemessaDistribuidor":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "finalidadeRemessaDistribuidor",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "codEntidadeRemessa":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codEntidadeRemessa",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "codFinalidadeRemessaEntidade":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "codFinalidadeRemessaEntidade",
+        "innerText": "",
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "prazoEntidadeRemessa":
+    {
+        "command": "input",
+        "selectorType": "id",
+        "identifier": "prazoEntidadeRemessa",
+        "innerText": null,
+        "input": "",
+        "timeOut": null,
+        "color": null
+    }
+}

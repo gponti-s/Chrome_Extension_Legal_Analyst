@@ -71,7 +71,7 @@ async function storeConfigAndScripts() {
     }
     const ordenacaoModel = await ordenacaoModelResponse.json();
 
-    // Fetch the automationModel.json
+    // Fetch the automationScripts.json
     const ordenacaoScriptsResponse = await fetch(
       chrome.runtime.getURL("dataBase/ordenacaoScriptsDb.json")
     );
@@ -82,9 +82,39 @@ async function storeConfigAndScripts() {
     }
     const ordenacaoScripts = await ordenacaoScriptsResponse.json();
 
+    // Fetch the remessaModel.json
+    const remessaModelResponse = await fetch(
+      chrome.runtime.getURL("dataBase/remessaModelDb.json")
+    );
+    if (!remessaModelResponse.ok) {
+      throw new Error(
+        `Failed to fetch script.json: ${remessaModelResponse.statusText}`
+      );
+    }
+    const remessaModel = await remessaModelResponse.json();
+
+    // Fetch the remessaScripts.json
+    const remessaScriptsResponse = await fetch(
+      chrome.runtime.getURL("dataBase/remessaScriptsDb.json")
+    );
+    if (!remessaScriptsResponse.ok) {
+      throw new Error(
+        `Failed to fetch script.json: ${remessaScriptsResponse.statusText}`
+      );
+    }
+    const remessaScripts = await remessaScriptsResponse.json();
+
     // Store config and scripts in chrome.storage.local
     chrome.storage.local.set(
-      { config, scripts, automationButtons, ordenacaoModel, ordenacaoScripts },
+      {
+        config,
+        scripts,
+        automationButtons,
+        ordenacaoModel,
+        ordenacaoScripts,
+        remessaModel,
+        remessaScripts,
+      },
       (result) => {
         console.log("Config and scripts stored successfully.", result);
       }
@@ -228,28 +258,45 @@ async function getDataFromStorage(_key) {
   });
 }
 
-
-async function ordenacaoRunScript(_modelObj, _scriptObj, config){
-  const orderedKeys = config.mapping.ordenacaoModel
+async function ordenacaoRunScript(_modelObj, _scriptObj, config) {
+  const orderedKeys = config.mapping.ordenacaoModel;
   for (const key of orderedKeys) {
     const value = _modelObj[key];
     if (_scriptObj[key] !== false && _scriptObj[key] !== null) {
-      Object.values(config.mapping.ordenacaoModelEspecialCase).forEach(Element => {
-        if (key === Element){
-          value.innerText = _scriptObj[key];
-          value.input = _scriptObj[key];
+      Object.values(config.mapping.ordenacaoModelEspecialCase).forEach(
+        (Element) => {
+          if (key === Element) {
+            value.innerText = _scriptObj[key];
+            value.input = _scriptObj[key];
+          }
         }
-      })
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, value.timeOut || 0)
       );
 
-      sendMessageToContentScript(
-        config.actions.automation,
-        null,
-        value
+      await new Promise((resolve) => setTimeout(resolve, value.timeOut || 0));
+
+      sendMessageToContentScript(config.actions.automation, null, value);
+    }
+  }
+  return true;
+}
+
+async function remessaRunScript(_modelObj, _scriptObj, config) {
+  const orderedKeys = config.mapping.remessaModel;
+  for (const key of orderedKeys) {
+    const value = _modelObj[key];
+    if (_scriptObj[key] !== false && _scriptObj[key] !== null) {
+      Object.values(config.mapping.remessaModelEspecialCase).forEach(
+        (Element) => {
+          if (key === Element) {
+            value.innerText = _scriptObj[key];
+            value.input = _scriptObj[key];
+          }
+        }
       );
+
+      await new Promise((resolve) => setTimeout(resolve, value.timeOut || 0));
+
+      sendMessageToContentScript(config.actions.automation, null, value);
     }
   }
   return true;
@@ -259,30 +306,32 @@ async function automationParsing(_key, config) {
   const buttons = await getDataFromStorage("automationButtons");
   const automationClass = buttons.automationButtons[_key].automationClass;
 
-  let script = await getDataFromStorage(
-    `${automationClass}Scripts`
-  );
+  let script = await getDataFromStorage(`${automationClass}Scripts`);
 
-  let model = await getDataFromStorage(
-    `${automationClass}Model`
-  );
-
+  let model = await getDataFromStorage(`${automationClass}Model`);
+  
+  //TODO: review this code
   if (model && script) {
     // const automationClassModel = `${automationClass}Model`;
     // const modelObj = model[automationClassModel];
     // const scriptObj = script[`${automationClass}Scripts`][_key]
 
-    switch (automationClass){
+    switch (automationClass) {
       case "ordenacao":
         const automationClassModel = `${automationClass}Model`;
         const modelObj = model[automationClassModel];
-        const scriptObj = script[`${automationClass}Scripts`][_key]
+        const scriptObj = script[`${automationClass}Scripts`][_key];
         return await ordenacaoRunScript(modelObj, scriptObj, config);
+      case "remessa":
+        
+        const remessaClassModel = `${automationClass}Model`;
+        const modelObj2 = model[remessaClassModel];
+        const scriptObj2 = script[`${automationClass}Scripts`];
+        console.log("modelObj2", modelObj2)
+        console.log("scriptObj2",scriptObj2 )
+        return await remessaRunScript(modelObj2, scriptObj2, config);
       case "analise":
-        return await automationRunScript(_key, config)
+        return await automationRunScript(_key, config);
     }
   }
 }
-
-
-

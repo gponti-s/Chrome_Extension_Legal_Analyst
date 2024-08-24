@@ -1,0 +1,11 @@
+{
+    "remessaContadorCustasProcessuais": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "tipoRemessaEntidade": true,
+        "finalidadeRemessaDistribuidor": null,
+        "codEntidadeRemessa": "Contador Judicial da Comarca - Londrina (online)",
+        "codFinalidadeRemessaEntidade": "CUSTAS PROCESSUAIS",
+        "prazoEntidadeRemessa": "5"
+    }
+}

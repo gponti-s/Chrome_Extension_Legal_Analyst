@@ -30,6 +30,21 @@
         "codCustasMandado",
         "prazoRetorno",
         "prazoOficial"
+      ],
+      "remessaModel": [
+        "realizarRemessa",
+        "tipoRemessaDistribuidor",
+        "tipoRemessaEntidade",
+        "finalidadeRemessaDistribuidor",
+        "codEntidadeRemessa",
+        "codFinalidadeRemessaEntidade",
+        "prazoEntidadeRemessa"
+      ],
+      "remessaModelEspecialCase": [
+        "finalidadeRemessaDistribuidor",
+        "codEntidadeRemessa",
+        "codFinalidadeRemessaEntidade",
+        "prazoEntidadeRemessa"
       ]
     },
     "api": {

@@ -7,36 +7,52 @@
         "textContent": "Dispensar Analise",
         "automationClass": "analise"
     },
-    "CnibDesbloqueio": {
-        "textContent": "Desbloq Cnib",
+    "cnibDesbloqueio": {
+        "textContent": "Cnib - Desbloq",
         "automationClass": "ordenacao"
     },
-    "mandadoIntimacao": {
+    "mandadoIntimacaoPenhora": {
         "textContent": "Mandado Int./30",
         "automationClass": "ordenacao"
     },
-    "ordenacaoEditalIntimacao": {
+    "editalIntimacao30": {
         "textContent": "Edital Int. 30",
         "automationClass": "ordenacao"
     },
-    "ordenacaoOficioBaixaConstricao": {
-        "textContent": "Ofício Baixa",
+    "oficioBaixaConstricao": {
+        "textContent": "Ofício - Baixa",
         "automationClass": "ordenacao"
     },
-    "ordenacaoAlvara": {
+    "alvaraCustas": {
         "textContent": "Alvará",
         "automationClass": "ordenacao"
     },
-    "ordenacaoDesbloqueioRenajud": {
-        "textContent": "Desbloq Renajud",
+    "renajudDesbloqueio": {
+        "textContent": "Renajud - Desbloq",
         "automationClass": "ordenacao"
     },
     "sisbajudDesbloqueio": {
-        "textContent": "SisbaJud - Desbloq",
+        "textContent": "Sisbajud - Desbloq",
         "automationClass": "ordenacao"
     },
     "sisbajudBloqueio": {
-        "textContent": "SisbaJud - Bloq",
+        "textContent": "Sisbajud - Bloq",
         "automationClass": "ordenacao"
+    },
+    "serasajudExclusao": {
+        "textContent": "Serasajud - Exclu",
+        "automationClass": "ordenacao"
+    },
+    "serasajudInclusao": {
+        "textContent": "Serasajud - Inclu",
+        "automationClass": "ordenacao"
+    },
+    "termoDePenhora": {
+        "textContent": "Termo de Penhora",
+        "automationClass": "ordenacao"
+    },
+    "contadorCustas": {
+        "textContent": "Contador - Custas",
+        "automationClass": "remessa"
     }
 }
