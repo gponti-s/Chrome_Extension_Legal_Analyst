@@ -1,11 +1,76 @@
 {
-    "remessaContadorCustasProcessuais": {
+    "contadorCustas": {
         "realizarRemessa": true,
         "tipoRemessaDistribuidor": false,
-        "tipoRemessaEntidade": true,
         "finalidadeRemessaDistribuidor": null,
-        "codEntidadeRemessa": "Contador Judicial da Comarca - Londrina (online)",
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Contador Judicial da Comarca - Londrina\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
         "codFinalidadeRemessaEntidade": "CUSTAS PROCESSUAIS",
         "prazoEntidadeRemessa": "5"
+    },
+    "contadorContaGeral": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "finalidadeRemessaDistribuidor": null,
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Contador Judicial da Comarca - Londrina\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
+        "codFinalidadeRemessaEntidade": "CONTA GERAL",
+        "prazoEntidadeRemessa": "5"
+    },
+    "1CRILondrina": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "finalidadeRemessaDistribuidor": null,
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Foro ExtraJudicial - LONDRINA - 1º SERVIÇO DE REGISTRO DE IMÓVEIS\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
+        "codFinalidadeRemessaEntidade": "CUMPRIR DESPACHO",
+        "prazoEntidadeRemessa": "20"
+    },
+    "2CRILondrina": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "finalidadeRemessaDistribuidor": null,
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Foro ExtraJudicial - LONDRINA - 2º SERVIÇO DE REGISTRO DE IMÓVEIS\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
+        "codFinalidadeRemessaEntidade": "CUMPRIR DESPACHO",
+        "prazoEntidadeRemessa": "20"
+    },
+    "3CRILondrina": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "finalidadeRemessaDistribuidor": null,
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Foro ExtraJudicial - LONDRINA - 3º SERVIÇO DE REGISTRO DE IMÓVEIS\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
+        "codFinalidadeRemessaEntidade": "CUMPRIR DESPACHO",
+        "prazoEntidadeRemessa": "20"
+    },
+    "4CRILondrina": {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": false,
+        "finalidadeRemessaDistribuidor": null,
+        "tipoRemessaEntidade": true,
+        "codEntidadeRemessa": "Foro ExtraJudicial - LONDRINA - 4º SERVIÇO DE REGISTRO DE IMÓVEIS\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t(online)",
+        "codFinalidadeRemessaEntidade": "CUMPRIR DESPACHO",
+        "prazoEntidadeRemessa": "20"
+    },
+    "distribuidorAnotacao":
+    {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": true,
+        "finalidadeRemessaDistribuidor": "Anotações",
+        "tipoRemessaEntidade": false,
+        "codEntidadeRemessa": null,
+        "codFinalidadeRemessaEntidade": null,
+        "prazoEntidadeRemessa": null
+    },
+    "distribuidorBaixa":
+    {
+        "realizarRemessa": true,
+        "tipoRemessaDistribuidor": true,
+        "finalidadeRemessaDistribuidor": "Baixa",
+        "tipoRemessaEntidade": false,
+        "codEntidadeRemessa": null,
+        "codFinalidadeRemessaEntidade": null,
+        "prazoEntidadeRemessa": null
     }
 }

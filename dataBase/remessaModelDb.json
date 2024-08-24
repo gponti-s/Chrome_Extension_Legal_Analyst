@@ -29,16 +29,6 @@
         "timeOut": 3000,
         "color": null
     },
-    "finalidadeRemessaDistribuidor":
-    {
-        "command": "select",
-        "selectorType": "id",
-        "identifier": "finalidadeRemessaDistribuidor",
-        "innerText": "",
-        "input": null,
-        "timeOut": null,
-        "color": null
-    },
     "codEntidadeRemessa":
     {
         "command": "select",
@@ -46,7 +36,17 @@
         "identifier": "codEntidadeRemessa",
         "innerText": "",
         "input": null,
-        "timeOut": null,
+        "timeOut": 500,
+        "color": null
+    },
+    "finalidadeRemessaDistribuidor":
+    {
+        "command": "select",
+        "selectorType": "id",
+        "identifier": "finalidadeRemessaDistribuidor",
+        "innerText": "",
+        "input": null,
+        "timeOut": 500,
         "color": null
     },
     "codFinalidadeRemessaEntidade":
@@ -56,7 +56,7 @@
         "identifier": "codFinalidadeRemessaEntidade",
         "innerText": "",
         "input": null,
-        "timeOut": null,
+        "timeOut": 500,
         "color": null
     },
     "prazoEntidadeRemessa":

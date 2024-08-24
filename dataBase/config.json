@@ -34,8 +34,8 @@
       "remessaModel": [
         "realizarRemessa",
         "tipoRemessaDistribuidor",
-        "tipoRemessaEntidade",
         "finalidadeRemessaDistribuidor",
+        "tipoRemessaEntidade",
         "codEntidadeRemessa",
         "codFinalidadeRemessaEntidade",
         "prazoEntidadeRemessa"

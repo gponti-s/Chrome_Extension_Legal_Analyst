@@ -54,5 +54,33 @@
     "contadorCustas": {
         "textContent": "Contador - Custas",
         "automationClass": "remessa"
+    },
+    "contadorContaGeral": {
+        "textContent": "Contador - Conta Geral",
+        "automationClass": "remessa"
+    },
+    "distribuidorAnotacao": {
+        "textContent": "Distribuidor - Anotação",
+        "automationClass": "remessa"
+    },
+    "distribuidorBaixa": {
+        "textContent": "Distribuidor - Baixa",
+        "automationClass": "remessa"
+    },
+    "1CRILondrina":{
+        "textContent": "1ºCRI Londrina",
+        "automationClass": "remessa"
+    },
+    "2CRILondrina":{
+        "textContent": "2ºCRI Londrina",
+        "automationClass": "remessa"
+    },
+    "3CRILondrina":{
+        "textContent": "3ºCRI Londrina",
+        "automationClass": "remessa"
+    },
+    "4CRILondrina":{
+        "textContent": "4ºCRI Londrina",
+        "automationClass": "remessa"
     }
 }

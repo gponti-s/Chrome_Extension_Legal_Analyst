@@ -160,6 +160,8 @@ async function delay(_object) {
 }
 
 async function selectOption(_object, elements) {
+  console.log("_object - selectOptions",_object)
+  console.log("elements - selectOptions",elements)
   if (!elements || elements.length === 0) {
     console.error("No elements found to select");
     return;
@@ -168,6 +170,7 @@ async function selectOption(_object, elements) {
   elements.forEach((selectElement) => {
     if (selectElement) {
       let options = selectElement.options;
+      console.log("options - selectOptions",options)
       for (let i = 0; i < options.length; i++) {
         if (
           options[i].innerText.toLocaleLowerCase() ===
@@ -209,7 +212,6 @@ async function style(_object, elements) {
 
 
 async function style(_object, elements) {
-  console.log("style", elements);
   let elementChanged = false;
 
   if (_object.identifier === 'tr') {

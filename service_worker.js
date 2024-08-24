@@ -295,7 +295,7 @@ async function remessaRunScript(_modelObj, _scriptObj, config) {
       );
 
       await new Promise((resolve) => setTimeout(resolve, value.timeOut || 0));
-
+      console.log("value ####", value)
       sendMessageToContentScript(config.actions.automation, null, value);
     }
   }
@@ -326,9 +326,7 @@ async function automationParsing(_key, config) {
         
         const remessaClassModel = `${automationClass}Model`;
         const modelObj2 = model[remessaClassModel];
-        const scriptObj2 = script[`${automationClass}Scripts`];
-        console.log("modelObj2", modelObj2)
-        console.log("scriptObj2",scriptObj2 )
+        const scriptObj2 = script[`${automationClass}Scripts`][_key];
         return await remessaRunScript(modelObj2, scriptObj2, config);
       case "analise":
         return await automationRunScript(_key, config);
