@@ -532,6 +532,40 @@ async function searchFor(checkbox) {
 }
 
 
+async function highlightInnerText(){
+  const argList = [
+    "custas",
+    "depósito",
+    "advogado"
+  ]
+  const rows = document.querySelectorAll("table.resultTable > tbody > tr > td")
+  if(rows){
+    Object.values(rows).forEach(Element => {
+      for(const arg of argList){
+        if(Element.innerText.toLowerCase().includes(arg.toLowerCase())){
+          console.log(Element.innerText);
+          if (arg == "depósito"){
+            Element.style.border = "solid gray";
+          } else if(arg == "advogado"){
+            if (Element.querySelector('b > a')){
+              continue;
+            } else{
+              Element.querySelector('b').style.backgroundColor = "pink";
+              Element.querySelector('b').style.color = "#8b0000";
+            }
+          }
+          else{
+            Element.style.border = "solid #0039a6";
+          }
+        }
+      }
+
+    })
+  } else{
+    console.log("No rows were found")
+  }
+}
+
 //############################# Management Center ####################################
 
 async function main() {
@@ -549,6 +583,7 @@ async function main() {
     //_ = await checkPendencias();
     //TODO: temporary => to keep the checkAll checked
     newCheckAll.click();
+    _ = await highlightInnerText();
   } else{
     //newCheckAll.click();
   }

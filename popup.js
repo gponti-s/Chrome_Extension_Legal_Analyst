@@ -88,18 +88,56 @@ function NewAutomationButton(_className, _key, _textContent) {
   return newButton;
 }
 
+// function createButtons(response) {
+//   if (response.automationButtons && typeof response.automationButtons === "object") {
+//     const sortedEntries = Object.entries(response.automationButtons).sort((a, b) => {
+//       return a[1].textContent.localeCompare(b[1].textContent);
+//     });
+//     sortedEntries.forEach(function ([key, value]) {
+//       const newButton = NewAutomationButton(
+//         response.config.style.buttonClassName,
+//         key,
+//         value.textContent
+//       );
+//       document.getElementById(value.automationClass).appendChild(newButton);
+//       newButton.addEventListener("click", async () => {
+//         sendMessageToServiceWorker(
+//           response.config.actions.automation,
+//           null,
+//           key
+//         );
+//       });
+//     });
+//   } else {
+//     console.error(
+//       response.config.errorMessages.popupMessageresponse,
+//       response.automationButtons
+//     );
+//   }
+// }
+
+
 function createButtons(response) {
   if (response.automationButtons && typeof response.automationButtons === "object") {
     const sortedEntries = Object.entries(response.automationButtons).sort((a, b) => {
       return a[1].textContent.localeCompare(b[1].textContent);
     });
+
     sortedEntries.forEach(function ([key, value]) {
       const newButton = NewAutomationButton(
         response.config.style.buttonClassName,
         key,
         value.textContent
       );
-      document.getElementById(value.automationClass).appendChild(newButton);
+
+      newButton.classList.add('w-100'); // Makes button occupy full width of its container
+
+      const container = document.getElementById(value.automationClass);
+
+      container.classList.add('d-flex', 'flex-column'); // Flex column for vertical stacking
+
+      container.appendChild(newButton);
+
       newButton.addEventListener("click", async () => {
         sendMessageToServiceWorker(
           response.config.actions.automation,
@@ -109,12 +147,30 @@ function createButtons(response) {
       });
     });
   } else {
+    // Log an error message if automationButtons is not found or is not an object
     console.error(
-      response.config.errorMessages.popupMessageresponse,
+      response.config.errorMessages.popupMessageResponse,
       response.automationButtons
     );
   }
 }
+
+function NewAutomationButton(buttonClassName, key, textContent) {
+  const button = document.createElement('button');
+  button.className = `${buttonClassName} w-100`; // Apply additional Bootstrap classes
+  button.textContent = textContent;
+  button.id = key; // Set an ID for the button, if needed
+  return button;
+}
+
+
+
+
+
+
+
+
+//----------------------------------------------------------
 
 async function initializeButtons() {
   try {

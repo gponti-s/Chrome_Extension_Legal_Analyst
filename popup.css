@@ -45,3 +45,7 @@ body{
     top: 20px;
     right: 80px;
 }
+
+.col > .btn {
+    margin-bottom: 5px; /* Add some space between buttons */
+}
