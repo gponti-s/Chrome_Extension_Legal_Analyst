@@ -118,6 +118,7 @@ function NewAutomationButton(_className, _key, _textContent) {
 
 
 function createButtons(response) {
+  console.log(response)
   if (response.automationButtons && typeof response.automationButtons === "object") {
     const sortedEntries = Object.entries(response.automationButtons).sort((a, b) => {
       return a[1].textContent.localeCompare(b[1].textContent);

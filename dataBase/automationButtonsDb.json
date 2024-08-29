@@ -8,19 +8,19 @@
         "automationClass": "analise"
     },
     "cnibDesbloqueio": {
-        "textContent": "Cnib - Desbloq",
+        "textContent": "Cnib - Desbloqueio",
         "automationClass": "ordenacao"
     },
     "mandadoIntimacaoPenhora": {
-        "textContent": "Mandado Int./30",
+        "textContent": "Mandado - Intimacação Penhora - 30 dias",
         "automationClass": "ordenacao"
     },
     "editalIntimacao30": {
-        "textContent": "Edital Int. 30",
+        "textContent": "Edital - Intimação - 30 dias",
         "automationClass": "ordenacao"
     },
     "oficioBaixaConstricao": {
-        "textContent": "Ofício - Baixa",
+        "textContent": "Ofício - Baixa de Constrição",
         "automationClass": "ordenacao"
     },
     "alvaraCustas": {
@@ -28,23 +28,23 @@
         "automationClass": "ordenacao"
     },
     "renajudDesbloqueio": {
-        "textContent": "Renajud - Desbloq",
+        "textContent": "Renajud - Desbloqueio",
         "automationClass": "ordenacao"
     },
     "sisbajudDesbloqueio": {
-        "textContent": "Sisbajud - Desbloq",
+        "textContent": "Sisbajud - Desbloqueio",
         "automationClass": "ordenacao"
     },
     "sisbajudBloqueio": {
-        "textContent": "Sisbajud - Bloq",
+        "textContent": "Sisbajud - Bloqueio",
         "automationClass": "ordenacao"
     },
     "serasajudExclusao": {
-        "textContent": "Serasajud - Exclu",
+        "textContent": "Serasajud - Exclusão",
         "automationClass": "ordenacao"
     },
     "serasajudInclusao": {
-        "textContent": "Serasajud - Inclu",
+        "textContent": "Serasajud - Inclusão",
         "automationClass": "ordenacao"
     },
     "termoDePenhora": {
@@ -52,7 +52,7 @@
         "automationClass": "ordenacao"
     },
     "contadorCustas": {
-        "textContent": "Contador - Custas",
+        "textContent": "Contador - Custas Processuais",
         "automationClass": "remessa"
     },
     "contadorContaGeral": {
@@ -68,19 +68,19 @@
         "automationClass": "remessa"
     },
     "1CRILondrina":{
-        "textContent": "1ºCRI Londrina",
+        "textContent": "1º CRI - Londrina",
         "automationClass": "remessa"
     },
     "2CRILondrina":{
-        "textContent": "2ºCRI Londrina",
+        "textContent": "2º CRI - Londrina",
         "automationClass": "remessa"
     },
     "3CRILondrina":{
-        "textContent": "3ºCRI Londrina",
+        "textContent": "3º CRI - Londrina",
         "automationClass": "remessa"
     },
     "4CRILondrina":{
-        "textContent": "4ºCRI Londrina",
+        "textContent": "4º CRI - Londrina",
         "automationClass": "remessa"
     }
 }

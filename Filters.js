@@ -536,7 +536,9 @@ async function highlightInnerText(){
   const argList = [
     "custas",
     "depósito",
-    "advogado"
+    "advogado",
+    "advogada",
+    "EXCLUSÃO"
   ]
   const rows = document.querySelectorAll("table.resultTable > tbody > tr > td")
   if(rows){
@@ -546,7 +548,7 @@ async function highlightInnerText(){
           console.log(Element.innerText);
           if (arg == "depósito"){
             Element.style.border = "solid gray";
-          } else if(arg == "advogado"){
+          } else if(arg == "advogado" || arg == "advogada"){
             if (Element.querySelector('b > a')){
               continue;
             } else{

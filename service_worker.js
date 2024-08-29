@@ -1,5 +1,6 @@
 //############################# Setup Center ####################################
 
+//TODO: reveiw this function and global variable - get rid of them
 let config = {};
 
 async function loadConfig() {
@@ -9,22 +10,41 @@ async function loadConfig() {
 }
 
 async function initializeStorage() {
-  // Check if initialization has already been done
-  chrome.storage.local.get(["initialized"], (result) => {
-    //TODO: change result.initialized to !result.initialized
-    if (result.initialized) {
-      storeConfigAndScripts();
+  try {
+    await new Promise((resolve, reject) => {
+      chrome.storage.local.clear(() => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(`Error clearing local storage: ${chrome.runtime.lastError}`));
+        } else {
+          console.log("Local storage cleared successfully.");
+          resolve();
+        }
+      });
+    });
 
-      chrome.storage.local.set({ initialized: true }, () => {
-        console.log("Storage initialized for the first time.");
+    const { initialized } = await getDataFromStorage(["initialized"]);
+
+    if (!initialized) {
+      await storeConfigAndScripts();
+
+      await new Promise((resolve, reject) => {
+        chrome.storage.local.set({ initialized: true }, () => {
+          console.log("Storage initialized for the first time.");
+          resolve();
+        });
       });
     } else {
       console.log("Storage already initialized.");
     }
-  });
-  loadConfig();
+
+    //await loadConfig();
+
+  } catch (error) {
+    console.error("Error in initializeStorage:", error);
+  }
 }
 
+//TODO: refactor this function 
 async function storeConfigAndScripts() {
   try {
     // Fetch the config.json
@@ -104,7 +124,6 @@ async function storeConfigAndScripts() {
     }
     const remessaScripts = await remessaScriptsResponse.json();
 
-    // Store config and scripts in chrome.storage.local
     chrome.storage.local.set(
       {
         config,
@@ -155,7 +174,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           sendResponse(response);
         });
 
-        return true; // Keep the message channel open for async operation
+        return true; 
 
       case config.actions.automation:
         automationParsing(request.Option, config);
@@ -165,13 +184,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       case config.actions.fetchAutomationButtons:
         fetchAutomationData()
           .then((data) => {
-            sendResponse(data); // Send the fetched data
+            sendResponse(data); 
           })
           .catch((error) => {
             sendResponse({ error: error.message });
           });
 
-        return true; // Indicate that sendResponse will be called asynchronously
+        return true; 
 
       default:
         console.warn("Unhandled action:", request.action);
@@ -200,7 +219,6 @@ async function sendMessageToContentScript(
             Object: _object,
           },
           function (response) {
-            // Resolve the promise with the response
             resolve(response);
           }
         );
@@ -216,7 +234,6 @@ sendMessageToContentScript("main", null, null);
 async function automationRunScript(_key, config) {
   fetchAutomationData(config).then(async (data) => {
     if (data[_key] && data[_key].script) {
-      // Check if data[_key] and data[_key].script are defined
       const scriptArray = data[_key].script;
       for (let i = 0; i < scriptArray.length; i++) {
         await new Promise((resolve) =>
@@ -245,7 +262,7 @@ async function fetchAutomationData(config) {
   }
 }
 
-// --------------------------------- Test ------------------------------------------------
+// --------------------------------- Testing - running scripts ------------------------------------------------
 async function getDataFromStorage(_key) {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get(_key, (result) => {
