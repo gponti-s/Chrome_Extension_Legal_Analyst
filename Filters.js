@@ -75,6 +75,7 @@ const myFilters = {
           "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD/SISBAJUD",
           "JUNTADA DE PENHORA NÃO REALIZADA BACENJUD",
           "EXPEDIÇÃO DE BLOQUEIO BACENJUD",
+          "EXPEDIÇÃO DE BUSCA BACENJUD"
         ],
         color: "#fefed2",
         flag: false,
@@ -142,7 +143,7 @@ const myFilters = {
       },
       busca: {
         searchFor: [],
-        searchForBold: ["EXPEDIÇÃO DE BUSCA RENAJUD"],
+        searchForBold: ["EXPEDIÇÃO DE BUSCA RENAJUD", "JUNTADA DE PENHORA NÃO REALIZADA RENAJUD"],
         color: "#dbc4c1",
         flag: false,
         clickOn: true,
@@ -531,14 +532,15 @@ async function searchFor(checkbox) {
   return true;
 }
 
-
+//TODO: temporary function - refactor the argList and if statements
 async function highlightInnerText(){
   const argList = [
     "custas",
     "depósito",
     "advogado",
     "advogada",
-    "EXCLUSÃO"
+    "JUNTADA DE PETIÇÃO DE COMUNICAÇÃO DE ACORDO", 
+    "JUNTADA DE PETIÇÃO DE REQUERIMENTO DE ARQUIVAMENTO"
   ]
   const rows = document.querySelectorAll("table.resultTable > tbody > tr > td")
   if(rows){
@@ -555,6 +557,8 @@ async function highlightInnerText(){
               Element.querySelector('b').style.backgroundColor = "pink";
               Element.querySelector('b').style.color = "#8b0000";
             }
+          } else if(arg == "JUNTADA DE PETIÇÃO DE COMUNICAÇÃO DE ACORDO" || arg == "JUNTADA DE PETIÇÃO DE REQUERIMENTO DE ARQUIVAMENTO"){
+            Element.style.border = "solid red";
           }
           else{
             Element.style.border = "solid #0039a6";

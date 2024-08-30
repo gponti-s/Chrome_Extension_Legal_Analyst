@@ -104,7 +104,7 @@
     "alvaraCustas":{
         "ordenarCumprimento": true,
         "selecionarCumprimento": "ALVARÁ",
-        "assinadoPorJuiz": false,
+        "assinadoPorJuiz": true,
         "selecionarExequente": false,
         "selecionarExecutado": false,
         "urgente": false,
