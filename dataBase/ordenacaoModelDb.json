@@ -1,4 +1,14 @@
 {
+    "movimentarDestaMovimentação": 
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "movimentarButton",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
     "ordenarCumprimento": 
     {
         "command": "click",
@@ -6,7 +16,7 @@
         "identifier": "a",
         "innerText": "Ordenar Cumprimentos",
         "input": null,
-        "timeOut": null,
+        "timeOut": 1500,
         "color": null
     },
     "selecionarCumprimento":

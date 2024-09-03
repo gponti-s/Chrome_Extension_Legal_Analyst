@@ -82,8 +82,9 @@ function waitForIframeLoad(iframe) {
 // default:
 //  selector = `[{selectorType}*="${identifier}"]`;
 async function selectElement(selectorType, identifier) {
+  console.log(selectorType)
+  console.log(identifier)
   let selector = "";
-
   switch (selectorType) {
     case "class":
       selector = `.${identifier}`;
@@ -97,12 +98,12 @@ async function selectElement(selectorType, identifier) {
     case "onclick":
       selector = `[onclick*="${identifier}"]`;
       break;
-    case "title":
-      selector = `[title="${identifier}"]`;
+    case "id":
+      selector = `#${identifier}`;;
       break;
     default:
       // Default to selecting by id
-      selector = `#${identifier}`;
+      selector = `[${selectorType}="${identifier}"]`;
       break;
   }
   return await findElementInFrames(selector);

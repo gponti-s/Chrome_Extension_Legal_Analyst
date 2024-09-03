@@ -1,5 +1,6 @@
 {
     "cnibDesbloqueio":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "DESBLOQUEIO CNIB",
         "assinadoPorJuiz": false,
@@ -17,6 +18,7 @@
         "cumprimentoVinculado": false
     },
     "sisbajudDesbloqueio":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "DESBLOQUEIO SISBAJUD",
         "assinadoPorJuiz": false,
@@ -34,6 +36,7 @@
         "cumprimentoVinculado": false
     },
     "sisbajudBloqueio":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "BLOQUEIO SISBAJUD",
         "assinadoPorJuiz": false,
@@ -51,6 +54,7 @@
         "cumprimentoVinculado": false
     },
     "mandadoIntimacaoPenhora":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "MANDADO",
         "assinadoPorJuiz": false,
@@ -68,6 +72,7 @@
         "cumprimentoVinculado": true
     },
     "editalIntimacao30":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "EDITAL/INTIMAÇÃO",
         "assinadoPorJuiz": false,
@@ -85,6 +90,7 @@
         "cumprimentoVinculado": false
     },
     "oficioBaixaConstricao":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "OFÍCIO DE BAIXA DE CONSTRIÇÃO",
         "assinadoPorJuiz": false,
@@ -102,6 +108,7 @@
         "cumprimentoVinculado": false
     },
     "alvaraCustas":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "ALVARÁ",
         "assinadoPorJuiz": true,
@@ -119,6 +126,7 @@
         "cumprimentoVinculado": false
     },
     "renajudDesbloqueio":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "DESBLOQUEIO RENAJUD",
         "assinadoPorJuiz": false,
@@ -136,6 +144,7 @@
         "cumprimentoVinculado": false
     },
     "serasajudExclusao":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "OFÍCIO SERASAJUD (EXCLUSÃO)",
         "assinadoPorJuiz": false,
@@ -153,6 +162,7 @@
         "cumprimentoVinculado": false
     },
     "serasajudInclusao":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "OFÍCIO SERASAJUD (INCLUSÃO)",
         "assinadoPorJuiz": false,
@@ -170,6 +180,7 @@
         "cumprimentoVinculado": false
     },
     "termoDePenhora":{
+        "movimentarDestaMovimentação": true,
         "ordenarCumprimento": true,
         "selecionarCumprimento": "TERMO DE PENHORA",
         "assinadoPorJuiz": true,

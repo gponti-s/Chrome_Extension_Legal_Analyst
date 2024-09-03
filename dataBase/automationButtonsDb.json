@@ -7,6 +7,10 @@
         "textContent": "Dispensar Analise",
         "automationClass": "analise"
     },
+    "retirarLocalizador":{
+        "textContent": "Retirar Localizador",
+        "automationClass": "analise"
+    },
     "cnibDesbloqueio": {
         "textContent": "Cnib - Desbloqueio",
         "automationClass": "ordenacao"

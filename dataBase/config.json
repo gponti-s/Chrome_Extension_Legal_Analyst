@@ -8,6 +8,7 @@
     },
     "mapping": {
       "ordenacaoModel" : [
+        "movimentarDestaMovimentação",
         "ordenarCumprimento",
         "selecionarCumprimento",
         "assinadoPorJuiz",
@@ -32,6 +33,7 @@
         "prazoOficial"
       ],
       "remessaModel": [
+        "movimentarDestaMovimentação",
         "realizarRemessa",
         "tipoRemessaDistribuidor",
         "finalidadeRemessaDistribuidor",

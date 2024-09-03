@@ -1,4 +1,13 @@
+{    "movimentarDestaMovimentação": 
 {
+    "command": "click",
+    "selectorType": "id",
+    "identifier": "movimentarButton",
+    "innerText": null,
+    "input": null,
+    "timeOut": null,
+    "color": null
+},
     "realizarRemessa": 
     {
         "command": "click",
@@ -6,7 +15,7 @@
         "identifier": "a",
         "innerText": "Realizar Remessa",
         "input": null,
-        "timeOut": null,
+        "timeOut": 1500,
         "color": null
     },
     "tipoRemessaDistribuidor":

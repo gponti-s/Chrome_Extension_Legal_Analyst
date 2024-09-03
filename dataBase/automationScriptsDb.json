@@ -100,6 +100,46 @@
             }
         ]
     },
+"retirarLocalizador": {
+        "script": [
+            {
+                "command": "click",
+                "selectorType": "value",
+                "identifier": "Voltar para o Processo",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#tabItemprefix0 > div.tabCenter > a",
+                "innerText": null,
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#includeContent > fieldset > table.form > tbody > tr:nth-child(7) > td:nth-child(5) > a",
+                "innerText": null,
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#localizadorProcessoForm > fieldset > table.resultTable > tbody > tr:nth-child(1) > td:nth-child(4) > a",
+                "innerText": null,
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            }
+        ]
+    },
     "style": {
         "textContent": "Style",
         "divIdToAppend": "developmentButtons",
