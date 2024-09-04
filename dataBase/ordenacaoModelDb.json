@@ -16,7 +16,7 @@
         "identifier": "a",
         "innerText": "Ordenar Cumprimentos",
         "input": null,
-        "timeOut": 1500,
+        "timeOut": 2000,
         "color": null
     },
     "selecionarCumprimento":
@@ -153,6 +153,16 @@
         "command": "click",
         "selectorType": "id",
         "identifier": "cumprimentoVinculado",
+        "innerText": null,
+        "input": null,
+        "timeOut": null,
+        "color": null
+    },
+    "cumprimentoButton": 
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "cumprimentoButton",
         "innerText": null,
         "input": null,
         "timeOut": null,

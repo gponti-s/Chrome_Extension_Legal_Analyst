@@ -15,7 +15,7 @@
         "identifier": "a",
         "innerText": "Realizar Remessa",
         "input": null,
-        "timeOut": 1500,
+        "timeOut": 2000,
         "color": null
     },
     "tipoRemessaDistribuidor":
@@ -75,6 +75,16 @@
         "identifier": "prazoEntidadeRemessa",
         "innerText": null,
         "input": "",
+        "timeOut": null,
+        "color": null
+    },
+    "cumprimentoButton": 
+    {
+        "command": "click",
+        "selectorType": "id",
+        "identifier": "remessaButton",
+        "innerText": null,
+        "input": null,
         "timeOut": null,
         "color": null
     }

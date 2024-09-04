@@ -23,7 +23,8 @@
         "classificacaoMandado",
         "codCustasMandado",
         "mandadoDesentranhado",
-        "cumprimentoVinculado"
+        "cumprimentoVinculado",
+        "cumprimentoButton"
       ],
       "ordenacaoModelEspecialCase": [
         "selecionarCumprimento",
@@ -40,7 +41,8 @@
         "tipoRemessaEntidade",
         "codEntidadeRemessa",
         "codFinalidadeRemessaEntidade",
-        "prazoEntidadeRemessa"
+        "prazoEntidadeRemessa",
+        "cumprimentoButton"
       ],
       "remessaModelEspecialCase": [
         "finalidadeRemessaDistribuidor",
