@@ -11,6 +11,10 @@
         "textContent": "Retirar Localizador",
         "automationClass": "analise"
     },
+    "cartaDeIntimacao":{
+        "textContent": "Carta de Intimação",
+        "automationClass": "analise"
+    },
     "cnibDesbloqueio": {
         "textContent": "Cnib - Desbloqueio",
         "automationClass": "ordenacao"

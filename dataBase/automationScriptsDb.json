@@ -190,5 +190,127 @@
                 "color": "lightgreen"
             }
         ]
+    },
+    "cartaDeIntimacao": {
+        "script": [
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "a",
+                "innerText": "Intimação(ões) pendente(s) de expedição",
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#tabItemprefix0 > div.tabCenter > a",
+                "innerText": null,
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "a",
+                "innerText": "Analisar",
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            },
+            {
+                "command": "select",
+                "selectorType": "id",
+                "identifier": "codModelo",
+                "innerText": "Carta de intimação - Termo de Penhora - Guilherme",
+                "input": null,
+                "timeOut": 3000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "digitarButton",
+                "innerText": null,
+                "input": null,
+                "timeOut": 2000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "submitButton",
+                "innerText": null,
+                "input": null,
+                "timeOut": 2000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "value",
+                "identifier": "Salvar",
+                "innerText": null,
+                "input": null,
+                "timeOut": 3000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "finishButton",
+                "innerText": null,
+                "input": null,
+                "timeOut": 3000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "utilizarContraFe",
+                "innerText": null,
+                "input": null,
+                "timeOut": 1500,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "utilizarARDigital",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "linkSelecaoDocumentos",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "value",
+                "identifier": "Marcar Todos",
+                "innerText": null,
+                "input": null,
+                "timeOut": 2000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "confirmarButton",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            }
+
+        ]
     }
 }

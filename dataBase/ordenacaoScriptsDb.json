@@ -73,7 +73,7 @@
         "codCustasMandado": "Citação, intimação e notificação",
         "mandadoDesentranhado": true,
         "cumprimentoVinculado": true,
-        "cumprimentoButton": true
+        "cumprimentoButton": false
     },
     "editalIntimacao30":{
         "movimentarDestaMovimentação": true,
