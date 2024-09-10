@@ -14,6 +14,83 @@
             }
         ]
     },
+    "analiseJuntadaAtoOrdinatorio": {
+        "script": [
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#quadroPendencias > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr > td > a",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#analisarJuntadaForm > table.resultTable > tbody > tr:nth-child(1) > td:nth-child(1) > input[type=checkbox]",
+                "innerText": null,
+                "input": null,
+                "timeOut": 2000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "onclick",
+                "identifier": "analisar()",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "input",
+                "selectorType": "tag",
+                "identifier": "#descricaoTipoDocumento",
+                "innerText": null,
+                "input": "ATO ORDINATÓRIO",
+                "timeOut": 2000,
+                "color": null
+            },
+            {
+                "command": "select",
+                "selectorType": "id",
+                "identifier": "87",
+                "innerText": "ATO ORDINATÓRIO",
+                "input": null,
+                "timeOut": 1000,
+                "color": null
+            },
+            {
+                "command": "click",
+                "selectorType": "id",
+                "identifier": "addButton",
+                "innerText": null,
+                "input": null,
+                "timeOut": null,
+                "color": null
+            },
+            {
+                "command": "select",
+                "selectorType": "id",
+                "identifier": "codDescricao",
+                "innerText": "Ato Ordinatório",
+                "input": null,
+                "timeOut": 2000,
+                "color": null
+            },            
+            {
+                "command": "click",
+                "selectorType": "tag",
+                "identifier": "#trModelo > td:nth-child(2) > span > span.selection > span",
+                "innerText": null,
+                "input": null,
+                "timeOut": 3000,
+                "color": null
+            }
+
+        ]
+    },
     "analiseJuntada": {
         "textContent": "Dispensar Analise",
         "divIdToAppend": "analyseButtons",
@@ -56,7 +133,6 @@
             }
         ]
     },
-    
 
     "anlterarClasseProcessual": {
         "textContent": "Classe IPTU",

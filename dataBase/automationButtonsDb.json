@@ -4,15 +4,19 @@
         "automationClass": "analise"
     },
     "analiseJuntada": {
-        "textContent": "Dispensar Analise",
+        "textContent": "Analise - Dispensar",
+        "automationClass": "analise"
+    },
+    "analiseJuntadaAtoOrdinatorio": {
+        "textContent": "Analise - Ato Odinatório",
         "automationClass": "analise"
     },
     "retirarLocalizador":{
-        "textContent": "Retirar Localizador",
+        "textContent": "Localizador - Retirar",
         "automationClass": "analise"
     },
     "cartaDeIntimacao":{
-        "textContent": "Carta de Intimação",
+        "textContent": "Carta de Intimação - Penhora de Imóvel",
         "automationClass": "analise"
     },
     "cnibDesbloqueio": {
