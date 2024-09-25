@@ -193,7 +193,7 @@ const myFilters = {
     types: {
       devolvido: {
         searchFor: [],
-        searchForBold: ["JUNTADA DE LAUDO"],
+        searchForBold: ["JUNTADA DE LAUDO", "EXPEDIÇÃO DE AUTO DE ARREMATAÇÃO"],
         color: "#E8DAEF",
         flag: false,
         clickOn: true,
