@@ -45,7 +45,7 @@
         "identifier": "codEntidadeRemessa",
         "innerText": "",
         "input": null,
-        "timeOut": 500,
+        "timeOut": 1000,
         "color": null
     },
     "finalidadeRemessaDistribuidor":
@@ -55,7 +55,7 @@
         "identifier": "finalidadeRemessaDistribuidor",
         "innerText": "",
         "input": null,
-        "timeOut": 500,
+        "timeOut": 1000,
         "color": null
     },
     "codFinalidadeRemessaEntidade":
@@ -65,7 +65,7 @@
         "identifier": "codFinalidadeRemessaEntidade",
         "innerText": "",
         "input": null,
-        "timeOut": 500,
+        "timeOut": 1000,
         "color": null
     },
     "prazoEntidadeRemessa":
